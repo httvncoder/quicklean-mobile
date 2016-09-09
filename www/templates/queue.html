@@ -1,0 +1,125 @@
+<ion-view title="Queue" id="page1">
+	<ion-content padding="true" class="has-header"></ion-content>
+
+	<div class="container">
+		<div>
+			<div ng-if="!queue.status.length">
+				<div class="u-spacer">
+					<div class="circle calm-bg u-block-center">
+						<i class="icon ion-happy-outline"></i>
+					</div>
+				</div>
+
+				<h5 class="calm">Nice!</h5>
+
+				<p class="u-text-grey u-spacer">
+					Looks like your clothes are all clean.<br />Let us know when you do!
+				</p>
+
+				<div>
+					<button ng-click="new()" class="button button-positive button-block">
+						Make New Reservation
+					</button>
+				</div>
+			</div>
+
+			<div ng-if="queue.status === 'pending'">
+				<div class="u-spacer">
+					<div class="circle positive-bg u-block-center">
+						<i class="icon ion-ios-list-outline"></i>
+					</div>
+				</div>
+
+				<h5 class="positive">Pending</h5>
+
+				<p class="u-text-grey u-spacer">Please kindly wait,<br />we are still processing your reservation.</p>
+
+				<div>
+					<button ng-click="cancel()" class="button button-assertive  button-block">
+						Cancel Reservation
+					</button>
+				</div>
+			</div>
+
+			<div ng-if="queue.status === 'approved'">
+				<div class="u-spacer">
+					<div class="circle positive-bg u-block-center">
+						<i class="icon ion-load-c u-animate-spin"></i>
+					</div>
+				</div>
+
+				<h5 class="positive">On-going...</h5>
+
+				<p class="u-text-grey u-spacer">Your clothes are now being washed.</p>
+
+				<div>
+					<button ng-click="cancel()" class="button button-assertive  button-block">
+						Cancel Reservation
+					</button>
+				</div>
+			</div>
+
+			<div ng-if="queue.status === 'declined'">
+				<div class="u-spacer">
+					<div class="circle assertive-bg u-block-center">
+						<i class="icon ion-alert"></i>
+					</div>
+				</div>
+
+				<h5 class="assertive">Declined</h5>
+
+				<p class="u-text-grey u-spacer">Sorry, we had to decline your reservation.</p>
+
+				<div>
+					<button ng-click="new()" class="button button-positive button-block">
+						Make Another Reservation
+					</button>
+				</div>
+			</div>
+
+			<div ng-if="queue.status === 'done'">
+				<div class="u-spacer">
+					<div class="circle balanced-bg u-block-center">
+						<i class="icon ion-thumbsup"></i>
+					</div>
+				</div>
+
+				<h5 class="balanced">
+					Done
+				</h5>
+
+				<p class="u-text-grey u-spacer">
+					Your clothes are good as new.
+				</p>
+
+				<div>
+					<button ng-click="new()" class="button button-positive button-block">
+						Make Another Reservation
+					</button>
+				</div>
+			</div>
+
+			<div ng-if="queue.status === 'cancelled'">
+				<div class="u-spacer">
+					<div class="circle dark-bg u-block-center">
+						<i class="icon ion-sad-outline"></i>
+					</div>
+				</div>
+
+				<h5 class="dark">
+					Cancelled
+				</h5>
+
+				<p class="u-text-grey u-spacer">
+					Oops, it seems that your reservation got cancelled.
+				</p>
+
+				<div>
+					<button ng-click="new()" class="button button-positive button-block">
+						Make Another Reservation
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-view>
