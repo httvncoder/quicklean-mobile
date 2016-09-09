@@ -60,7 +60,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 	}
 
 	function connect() {
-		if ( id ) {
+		if ( !id ) {
 			return;
 		}
 
