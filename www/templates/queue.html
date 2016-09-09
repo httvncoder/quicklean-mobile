@@ -39,6 +39,8 @@
 						Cancel Reservation
 					</button>
 				</div>
+
+				<wizard-steps step="1" max="3"></wizard-steps>
 			</div>
 
 			<div ng-if="queue.status === 'approved'">
@@ -57,6 +59,8 @@
 						Cancel Reservation
 					</button>
 				</div>
+
+				<wizard-steps step="2" max="3"></wizard-steps>
 			</div>
 
 			<div ng-if="queue.status === 'declined'">
@@ -97,6 +101,8 @@
 						Make Another Reservation
 					</button>
 				</div>
+
+				<wizard-steps step="3" max="3"></wizard-steps>
 			</div>
 
 			<div ng-if="queue.status === 'cancelled'">

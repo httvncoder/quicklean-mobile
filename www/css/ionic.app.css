@@ -9777,3 +9777,25 @@ a.button {
     transform: rotate(0deg); }
   to {
     transform: rotate(360deg); } }
+
+.wizard-steps {
+  display: flex;
+  align-items: center; }
+  .wizard-steps .wizard-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    background: #387ef5;
+    border-radius: 50%; }
+  .wizard-steps .wizard-step--inactive {
+    background: none;
+    border: 1px solid #387ef5; }
+  .wizard-steps .wizard-line {
+    height: 1px;
+    width: 15px;
+    background: #387ef5; }
+  .wizard-steps .wizard-line--hidden {
+    display: none; }

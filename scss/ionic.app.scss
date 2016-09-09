@@ -81,3 +81,34 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	animation-direction: alternate;
 	animation-timing-function: ease-in;
 }
+
+.wizard-steps {
+	display: flex;
+	align-items: center;
+
+	.wizard-step {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		color: $light;
+		background: $positive;
+		border-radius: 50%;
+	}
+
+	.wizard-step--inactive {
+		background: none;
+		border: 1px solid $positive;
+	}
+
+	.wizard-line {
+		height: 1px;
+		width: 15px;
+		background: $positive;
+	}
+
+	.wizard-line--hidden {
+		display: none;
+	}
+}
