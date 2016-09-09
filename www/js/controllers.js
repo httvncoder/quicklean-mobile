@@ -18,10 +18,10 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
 	connect();
 
-	$scope.queue = {
-		position: null,
+	$scope.job = job || {
+		id: id,
 		status: '',
-		machine: ''
+		queue: -1
 	};
 
 	$scope.cancelling = false;
@@ -36,9 +36,9 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
 		return $http.post(':app/jobs/' + id + '/cancel')
 			.then(function(res) {
-				$scope.queue.position = null;
-				$scope.queue.status = 'cancelled';
-				$scope.queue.machine = '';
+				$scope.job.queue = null;
+				$scope.job.status = 'cancelled';
+				$scope.job.machine = '';
 				$scope.cancelling = false;
 				$ionicLoading.hide();
 			})
@@ -65,25 +65,10 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 		}
 
 		$pusher.subscribe('jobs.' + id)
-			.bind('approve', function(data) {
-				$scope.queue.position = data.data.position;
-				$scope.queue.status = 'approved';
-				$scope.queue.machine = 'Machine #1';
-			})
-			.bind('decline', function(data) {
-				$scope.queue.position = null;
-				$scope.queue.status = 'declined';
-				$scope.queue.machine = '';
-			})
-			.bind('done', function(data) {
-				$scope.queue.position = null;
-				$scope.queue.status = 'done';
-				$scope.queue.machine = '';
-			})
-			.bind('cancel', function(data) {
-				$scope.queue.position = null;
-				$scope.queue.status = 'cancelled';
-				$scope.queue.machine = '';
+			.bind('App\\\\Events\\\\JobStatusChange', function(data) {
+				$scope.job = angular.extend(data, {
+					status: status
+				});
 			});
 
 		$scope.$on('$destroy', function() {
