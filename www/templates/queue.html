@@ -50,9 +50,25 @@
 					</div>
 				</div>
 
-				<h5 class="positive">On-going...</h5>
+				<h5 class="positive">
+          On-going...
+        </h5>
 
-				<p class="u-text-grey u-spacer">Your clothes are now being washed.</p>
+				<p class="u-text-grey u-spacer">
+          Your clothes are now being washed.
+        </p>
+
+        <div ng-if="job.queue === 1" class="u-spacer">
+          <span class="label balanced">
+            {{ job.washing.name }}
+          </span>
+        </div>
+
+        <div ng-if="job.queue > 1" class="u-spacer">
+          <span class="label positive">
+            {{ job.queue | ordinal }} in Queue
+          </span>
+        </div>
 
 				<div>
 					<button ng-click="cancel()" class="button button-assertive  button-block">

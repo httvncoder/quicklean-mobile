@@ -112,3 +112,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		display: none;
 	}
 }
+
+.label {
+  display: inline-block;
+  padding: 2px 3px;
+  font-size: 12px;
+  border-radius: 3px;
+}
