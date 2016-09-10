@@ -81,15 +81,15 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading) {
 	$scope.form = {
 		data: {
-			name: "",
+			name: '',
 			phone: '',
-			service_type: '',
-			kilogram: 8,
-			washer_mode: '',
-			dryer_mode: '',
-			detergent: '',
-			bleach: '',
-			fabric_conditioner: '',
+			service_type: 'Self',
+			kilogram: '8',
+			washer_mode: 'clean',
+			dryer_mode: '19',
+			detergent: 'ariel',
+			bleach: 'colorsafe',
+			fabric_conditioner: 'downy',
 			is_press: false,
 			is_fold: false,
 			reserve_at: ''
