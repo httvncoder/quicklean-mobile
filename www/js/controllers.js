@@ -36,9 +36,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
 		return $http.post(':app/jobs/' + id + '/cancel')
 			.then(function(res) {
-				$scope.job.queue = null;
-				$scope.job.status = 'cancelled';
-				$scope.job.machine = '';
+				$scope.job = res.data.data;
 				$scope.cancelling = false;
 				$ionicLoading.hide();
 			})
