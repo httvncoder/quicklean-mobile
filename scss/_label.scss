@@ -1,9 +1,20 @@
 .label {
   display: inline-block;
-  padding: 2px 3px;
-  min-width: 100px;
+  padding: 5px 3px;
+  min-width: 75px;
   font-size: 12px;
-  color: $light;
   text-align: center;
-  border-radius: 3px;
+
+  .label-header {
+    margin: 0;
+    margin-bottom: 5px;
+    font-weight: light;
+    color: $dark;
+  }
+
+  .label-name {
+    margin: 0;
+    font-weight: light;
+    color: #b2b2b2;
+  }
 }

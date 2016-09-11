@@ -57,14 +57,22 @@
         </p>
 
         <div ng-if="job.queue" class="u-spacer">
-          <span ng-if="job.queue.washer" class="label positive-bg">
-            <span ng-if="job.queue.washer === 1">{{ job.washer.name }}</span>
-            <span ng-if="job.queue.washer > 1">{{ job.queue.washer | ordinal }} in <strong>{{ job.washer.name }}</strong></span>
+          <span class="label">
+            <h4 class="label-header">
+              <span ng-if="job.queue.washer">#{{ job.queue.washer }}</span>
+              <span ng-if="!job.queue.washer"><i class="icon ion-checkmark balanced"></i></span>
+            </h4>
+
+            <h6 class="label-name">{{ job.washer.name }}</h6>
           </span>
 
-          <span ng-if="job.queue.dryer" class="label positive-bg">
-            <span ng-if="job.queue.dryer === 1">{{ job.dryer.name }}</span>
-            <span ng-if="job.queue.dryer > 1">{{ job.queue.dryer | ordinal }} in <strong>{{ job.dryer.name }}</strong></span>
+          <span class="label">
+            <h4 class="label-header">
+              <span ng-if="job.queue.dryer">#{{ job.queue.dryer }}</span>
+              <span ng-if="!job.queue.dryer"><i class="icon ion-checkmark balanced"></i></span>
+            </h4>
+
+            <h6 class="label-name">{{ job.dryer.name }}</h6>
           </span>
         </div>
 
@@ -140,7 +148,7 @@
     </div>
   </div>
 
-  <div class="bar bar-footer bar-stable u-flex-align-center" ng-if="job.status.length">
+  <div class="bar bar-footer bar-stable u-flex-align-center u-flex-justify-space-between" ng-if="job.status.length">
     <wizard-steps ng-if="['Pending', 'Approved', 'Done'].includes(job.status)" step="job.status === 'Pending' ? 1 : (job.status === 'Approved' ? 2 : 3)" max="3" class="u-pull-left">
     </wizard-steps>
 

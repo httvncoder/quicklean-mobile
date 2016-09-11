@@ -9828,8 +9828,8 @@ a.button {
 .u-no-spacer {
   margin: 0; }
 
-.u-push-right {
-  margin-left: auto; }
+.u-flex-justify-space-between {
+  justify-content: space-between; }
 
 .u-flex-align-center {
   align-items: center; }
@@ -9876,12 +9876,19 @@ a.button {
 
 .label {
   display: inline-block;
-  padding: 2px 3px;
-  min-width: 100px;
+  padding: 5px 3px;
+  min-width: 75px;
   font-size: 12px;
-  color: #fff;
-  text-align: center;
-  border-radius: 3px; }
+  text-align: center; }
+  .label .label-header {
+    margin: 0;
+    margin-bottom: 5px;
+    font-weight: light;
+    color: #444; }
+  .label .label-name {
+    margin: 0;
+    font-weight: light;
+    color: #b2b2b2; }
 
 .wizard-steps {
   display: flex;
