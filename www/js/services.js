@@ -84,15 +84,15 @@ angular.module('app.services', [])
       }
 
       switch ( job.dryer_mode ) {
-        case 'clean':
+        case '19':
           total += job.kilogram == 8 ? 70 : 140;
           break;
 
-        case 'cleaner':
+        case '24':
           total += job.kilogram == 8 ? 80 : 160;
           break;
 
-        case 'cleanest':
+        case '29':
           total += job.kilogram == 8 ? 90 : 180;
           break;
       }
