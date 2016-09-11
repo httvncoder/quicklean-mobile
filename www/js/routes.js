@@ -63,11 +63,11 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu.laundryTips', {
+  .state('menu.laundry-tips', {
     url: '/page3',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/laundryTips.html',
+        templateUrl: 'templates/laundry-tips.html',
         controller: 'laundryTipsCtrl'
       }
     }
