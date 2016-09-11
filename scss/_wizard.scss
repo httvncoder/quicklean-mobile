@@ -1,8 +1,8 @@
-.wizard-steps {
+.wizard {
   display: flex;
   align-items: center;
 
-  .wizard-step {
+  .wizard__step {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,18 +13,14 @@
     border-radius: 50%;
   }
 
-  .wizard-step--inactive {
+  .wizard__step--inactive {
     background: none;
     border: 1px solid $positive;
   }
 
-  .wizard-line {
+  .wizard__line {
     height: 1px;
     width: 15px;
     background: $positive;
-  }
-
-  .wizard-line--hidden {
-    display: none;
   }
 }

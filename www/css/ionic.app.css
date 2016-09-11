@@ -9890,10 +9890,10 @@ a.button {
     font-weight: light;
     color: #b2b2b2; }
 
-.wizard-steps {
+.wizard {
   display: flex;
   align-items: center; }
-  .wizard-steps .wizard-step {
+  .wizard .wizard__step {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9902,12 +9902,10 @@ a.button {
     color: #fff;
     background: #387ef5;
     border-radius: 50%; }
-  .wizard-steps .wizard-step--inactive {
+  .wizard .wizard__step--inactive {
     background: none;
     border: 1px solid #387ef5; }
-  .wizard-steps .wizard-line {
+  .wizard .wizard__line {
     height: 1px;
     width: 15px;
     background: #387ef5; }
-  .wizard-steps .wizard-line--hidden {
-    display: none; }

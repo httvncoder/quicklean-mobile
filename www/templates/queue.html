@@ -150,7 +150,8 @@
 
   <div class="bar bar-footer bar-stable u-flex-align-center u-flex-justify-space-between" ng-if="job.status.length">
     <h4 class="u-no-spacer">
-      <i class="icon ion-pricetag u-text-icon-left"></i> {{ job.total_bill | numeraljs: 'currency' }}
+      <i class="icon ion-pricetag u-text-icon-left"></i>
+      PHP {{ job.total_bill | numeraljs: 'currency' }}
     </h4>
 
     <wizard-steps ng-if="['Pending', 'Approved', 'Done'].includes(job.status)" step="job.status === 'Pending' ? 1 : (job.status === 'Approved' ? 2 : 3)" max="3">
