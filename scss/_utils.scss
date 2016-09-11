@@ -1,0 +1,56 @@
+.u-block-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.u-text-grey {
+  color: #b2b2b2;
+}
+
+.u-spacer {
+  margin-bottom: 15px;
+}
+
+.u-no-spacer {
+  margin: 0;
+}
+
+.u-push-right {
+  margin-left: auto;
+}
+
+.u-flex-align-center {
+  align-items: center;
+}
+
+.u-text-icon-left {
+  margin-right: 5px;
+}
+
+.u-animate-spin {
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @-webkit-keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in;
+}

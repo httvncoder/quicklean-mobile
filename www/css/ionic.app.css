@@ -9815,24 +9815,6 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 100vh;
-  text-align: center; }
-
-.circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  color: #fff; }
-
 .u-block-center {
   margin-left: auto;
   margin-right: auto; }
@@ -9874,6 +9856,33 @@ a.button {
   to {
     transform: rotate(360deg); } }
 
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100vh;
+  text-align: center; }
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff; }
+
+.label {
+  display: inline-block;
+  padding: 2px 3px;
+  min-width: 100px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px; }
+
 .wizard-steps {
   display: flex;
   align-items: center; }
@@ -9895,12 +9904,3 @@ a.button {
     background: #387ef5; }
   .wizard-steps .wizard-line--hidden {
     display: none; }
-
-.label {
-  display: inline-block;
-  padding: 2px 3px;
-  min-width: 100px;
-  font-size: 12px;
-  color: #fff;
-  text-align: center;
-  border-radius: 3px; }
