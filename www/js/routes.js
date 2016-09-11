@@ -44,7 +44,7 @@ angular.module('app.routes', [])
     resolve: {
       // Check for existing jobs. If the user has one,
       // redirect him back to the queue page.
-      existing: ['$storage', '$state', '$ionicPopup', function($storage, $state, $ionicPopup) {
+      existing: ['$storage', '$state', '$ionicHistory', '$ionicPopup', function($storage, $state, $ionicHistory, $ionicPopup) {
         if ( $storage.get('id') ) {
           var popup = $ionicPopup.show({
             title: 'Oops!',
@@ -53,9 +53,10 @@ angular.module('app.routes', [])
               text: 'OK',
               type: 'button-positive',
               onTap: function() {
+                $ionicHistory.nextViewOptions({ disableBack: true });
                 $state.go('menu.queue');
               }
-            }]  
+            }]
           });
         }
       }]
@@ -80,6 +81,6 @@ angular.module('app.routes', [])
 
 $urlRouterProvider.otherwise('/side-menu21/page1')
 
-  
+
 
 });
