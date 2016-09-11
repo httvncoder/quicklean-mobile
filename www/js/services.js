@@ -18,11 +18,86 @@ angular.module('app.services', [])
 
 .factory('$pusher', [function() {
 	Pusher.logToConsole = true;
-	
+
 	var pusher = new Pusher('b11f3192b1895e579e9d', {
 		cluster: 'ap1',
 		encrypted: true
 	});
 
 	return pusher;
+}])
+
+.factory('JobFactory', [function() {
+  return {
+    /**
+     * Compute total bill for a job
+     *
+     * @param {object} Job data
+     * @return {number}
+     */
+    compute: function(job) {
+      var total = 0;
+
+      if ( job.is_fold ) {
+        total += 35;
+      }
+
+      switch ( job.detergent ) {
+        case 'ariel':
+          total += 12;
+          break;
+
+        case 'tide':
+          total += 10;
+          break;
+
+        case 'pride':
+          total += 6;
+      }
+
+      if ( job.fabric_conditioner === 'downy' ) {
+        total += 10;
+      }
+
+      switch ( job.bleach ) {
+        case 'colorsafe':
+          total += 5;
+          break;
+
+        case 'origina':
+          total += 12;
+          break;
+      }
+
+      switch ( job.washer_mode ) {
+        case 'clean':
+          total += job.kilogram == 8 ? 70 : 140;
+          break;
+
+        case 'cleaner':
+          total += job.kilogram == 8 ? 80 : 160;
+          break;
+
+        case 'cleanest':
+          total += job.kilogram == 8 ? 90 : 180;
+          break;
+      }
+
+      switch ( job.dryer_mode ) {
+        case 'clean':
+          total += job.kilogram == 8 ? 70 : 140;
+          break;
+
+        case 'cleaner':
+          total += job.kilogram == 8 ? 80 : 160;
+          break;
+
+        case 'cleanest':
+          total += job.kilogram == 8 ? 90 : 180;
+          break;
+      }
+
+      return total;
+    }
+  };
 }]);

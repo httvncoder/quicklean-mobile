@@ -75,10 +75,19 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 	}
 }])
 
-.controller('reservationCtrl', ['$scope', '$stateParams', '$state', '$http', '$ionicHistory', '$storage', '$ionicLoading', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('reservationCtrl', [
+  '$scope',
+  '$stateParams',
+  '$state',
+  '$http',
+  '$ionicHistory',
+  '$storage',
+  '$ionicLoading',
+  'JobFactory',
+ // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading) {
+function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading, JobFactory) {
 	$scope.form = {
 		data: {
 			name: '',
@@ -94,10 +103,15 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
 			is_fold: false,
 			reserve_at: ''
 		},
-
 		loading: false,
 		errors: []
 	};
+
+  $scope.total = JobFactory.compute($scope.form.data);
+
+  $scope.$watch('form.data', function(data, previous) {
+    $scope.total = JobFactory.compute(data);
+  }, true);
 
 	$scope.submit = function() {
 		if ( $scope.form.loading ) {

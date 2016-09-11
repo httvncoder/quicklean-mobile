@@ -1,12 +1,11 @@
 <ion-view title="Reservation" id="page2">
     <ion-content padding="true" class="has-header">
-        <h1 id="reservation-heading2" style="color:#000000;">Add Reservation</h1>
-
         <div ng-if="form.errors.length" style="background: #e42112; margin-bottom: 10px; color: #fff;" class="padding">
-            <ul>
-                <li ng-repeat="error in form.errors">{{ error }}</li>
-            </ul>
+          <ul>
+            <li ng-repeat="error in form.errors">{{ error }}</li>
+          </ul>
         </div>
+
         <form id="reservation-form1" class="list">
             <label class="item item-input" id="reservation-input1" name="name">
                 <span class="input-label">Name</span>
@@ -83,8 +82,17 @@
                 <span class="input-label">Reservation Date</span>
                 <input type="datetime-local" placeholder="" ng-model="form.data.reserve_at" id="reserve_at">
             </label>
-
-            <button ng-click="submit()" id="reservation-button2" class="button button-positive  button-block">Reserve!</button>
         </form>
     </ion-content>
+
+  <ion-footer-bar class="bar bar-footer bar-stable u-flex-align-center">
+    <h4 class="u-no-spacer">
+      <i class="icon ion-pricetag u-text-icon-left"></i> {{ total | numeraljs: 'currency' }}
+    </h4>
+
+    <button ng-click="submit()" id="reservation-button2" class="button button-positive u-push-right">
+      <i class="icon ion-calendar u-text-icon-left"></i>
+      Reserve
+    </button>
+  </ion-footer-bar>
 </ion-view>
