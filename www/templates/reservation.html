@@ -1,89 +1,99 @@
 <ion-view title="Reservation" id="page2">
-    <ion-content padding="true" class="has-header">
-        <div ng-if="form.errors.length" style="background: #e42112; margin-bottom: 10px; color: #fff;" class="padding">
-          <ul>
-            <li ng-repeat="error in form.errors">{{ error }}</li>
-          </ul>
-        </div>
+  <ion-content padding="true" class="has-header">
+    <div ng-if="form.errors.length" style="background: #e42112; margin-bottom: 10px; color: #fff;" class="padding">
+      <ul>
+        <li ng-repeat="error in form.errors">{{ error }}</li>
+      </ul>
+    </div>
 
-        <form id="reservation-form1" class="list">
-            <label class="item item-input" id="reservation-input1" name="name">
-                <span class="input-label">Name</span>
-                <input type="text" placeholder="" ng-model="form.data.name" id="name">
-            </label>
-            <label class="item item-input" id="reservation-input2" name="phone">
-                <span class="input-label">Phone</span>
-                <input type="text" placeholder="" ng-model="form.data.phone" id="phone">
-            </label>
-            <label class="item item-select" id="reservation-select1" name="service_type">
-                <span class="input-label">Service Type</span>
-                <select ng-model="form.data.service_type" id="service_type">
-                    <option>Self</option>
-                    <option>Employee</option>
-                </select>
-            </label>
-            <label class="item item-select" id="reservation-select2" name="kilogram">
-                <span class="input-label">Kilogram</span>
-                <select ng-model="form.data.kilogram" id="kilogram">
-                    <option value="8">8 kg</option>
-                    <option value="16">16 kg</option>
-                </select>
-            </label>
-            <label class="item item-select" id="reservation-select3" name="washer_mode">
-                <span class="input-label">Washer Mode</span>
-                <select ng-model="form.data.washer_mode" id="washer_mode">
-                    <option value="clean">Klean</option>
-                    <option value="cleaner">Kleaner</option>
-                    <option value="cleanest">Kleanest</option>
-                </select>
-            </label>
-            <label class="item item-select" id="reservation-select4" name="dryer_mode">
-                <span class="input-label">Dryer Mode</span>
-                <select ng-model="form.data.dryer_mode" id="dryer_mode">
-                    <option value="19">19 mins</option>
-                    <option value="24">24 mins</option>
-                    <option value="29">29 mins</option>
-                </select>
-            </label>
-            <label class="item item-select" id="reservation-select5" name="detergent">
-                <span class="input-label">Detergent</span>
-                <select id="detergent" ng-model="form.data.detergent">
-                    <option value="ariel">Ariel</option>
-                    <option value="pride">Pride</option>
-                    <option value="tide">Tide</option>
-                    <option>I have one</option>
-                </select>
-            </label>
-            <label class="item item-select" id="reservation-select6" name="bleach">
-                <span class="input-label">Bleach</span>
-                <select ng-model="form.data.bleach">
-                    <option value="colorsafe">Colorsafe</option>
-                    <option value="original">Original</option>
-                    <option value="i_have_one">I have one</option>
-                </select>
-            </label>
-            <label class="item item-select" id="reservation-select7" name="fabric_conditioner">
-                <span class="input-label">Fabric Conditioner</span>
-                <select ng-model="form.data.fabric_conditioner" id="fabric_conditioner">
-                    <option value="downy">Downy</option>
-                    <option value="i_have_one">I have one</option>
-                </select>
-            </label>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true" id="reservation-toggle1" name="is_press" ng-model="form.data.is_press">Pressed</ion-toggle>
-            <ion-toggle toggle-class="toggle-positive" ng-checked="true" id="reservation-toggle3" name="is_fold" ng-model="form.data.is_fold">Folded</ion-toggle>
+    <form id="reservation-form1" class="list">
+      <label class="item item-input" id="reservation-input1" name="name">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="John Doe" ng-model="form.data.name" id="name">
+      </label>
 
-            <!--
-            <ion-item>
-                <ion-label>Reservation Date</ion-label>
-                <ion-datetime displayFormat="Y-m-d H:i:s" pickerFormat="Y-m-d H:i:s" name="reserve_at" ng-model="form.data.reserve_at"></ion-datetime>
-            </ion-item>
-            -->
-            <label class="item item-input" id="reservation-input23" name="reserve_at">
-                <span class="input-label">Reservation Date</span>
-                <input type="datetime-local" placeholder="" ng-model="form.data.reserve_at" id="reserve_at">
-            </label>
-        </form>
-    </ion-content>
+      <label class="item item-input" id="reservation-input2" name="phone">
+        <span class="input-label">Phone</span>
+        <input type="text" placeholder="0916 432 9916" ng-model="form.data.phone" id="phone">
+      </label>
+
+      <label class="item item-select" id="reservation-select1" name="service_type">
+        <span class="input-label">Service Type</span>
+        <select ng-model="form.data.service_type" id="service_type">
+          <option>Self</option>
+          <option>Employee</option>
+        </select>
+      </label>
+
+      <label class="item item-select" id="reservation-select2" name="kilogram">
+        <span class="input-label">Kilogram</span>
+        <select ng-model="form.data.kilogram" id="kilogram">
+          <option value="8">8 kg</option>
+          <option value="16">16 kg</option>
+        </select>
+      </label>
+
+      <label class="item item-select" id="reservation-select3" name="washer_mode">
+        <span class="input-label">Washer Mode</span>
+        <select ng-model="form.data.washer_mode" id="washer_mode">
+          <option value="clean">Klean</option>
+          <option value="cleaner">Kleaner</option>
+          <option value="cleanest">Kleanest</option>
+        </select>
+      </label>
+
+      <label class="item item-select" id="reservation-select4" name="dryer_mode">
+        <span class="input-label">Dryer Mode</span>
+        <select ng-model="form.data.dryer_mode" id="dryer_mode">
+          <option value="19">19 mins</option>
+          <option value="24">24 mins</option>
+          <option value="29">29 mins</option>
+        </select>
+      </label>
+
+      <label class="item item-select" id="reservation-select5" name="detergent">
+        <span class="input-label">Detergent</span>
+        <select id="detergent" ng-model="form.data.detergent">
+          <option value="ariel">Ariel</option>
+          <option value="pride">Pride</option>
+          <option value="tide">Tide</option>
+          <option>I have one</option>
+        </select>
+      </label>
+
+      <label class="item item-select" id="reservation-select6" name="bleach">
+        <span class="input-label">Bleach</span>
+        <select ng-model="form.data.bleach">
+          <option value="colorsafe">Colorsafe</option>
+          <option value="original">Original</option>
+          <option value="i_have_one">I have one</option>
+        </select>
+      </label>
+
+      <label class="item item-select" id="reservation-select7" name="fabric_conditioner">
+        <span class="input-label">Fabric Conditioner</span>
+
+        <select ng-model="form.data.fabric_conditioner" id="fabric_conditioner">
+          <option value="downy">Downy</option>
+          <option value="i_have_one">I have one</option>
+        </select>
+      </label>
+
+      <ion-toggle toggle-class="toggle-positive" ng-checked="true" id="reservation-toggle1" name="is_press" ng-model="form.data.is_press">Pressed</ion-toggle>
+
+      <ion-toggle toggle-class="toggle-positive" ng-checked="true" id="reservation-toggle3" name="is_fold" ng-model="form.data.is_fold">Folded</ion-toggle>
+      <!--
+      <ion-item>
+          <ion-label>Reservation Date</ion-label>
+          <ion-datetime displayFormat="Y-m-d H:i:s" pickerFormat="Y-m-d H:i:s" name="reserve_at" ng-model="form.data.reserve_at"></ion-datetime>
+      </ion-item>
+      -->
+      <label class="item item-input" id="reservation-input23" name="reserve_at">
+        <span class="input-label">Reservation Date</span>
+        <input type="datetime-local" placeholder="" ng-model="form.data.reserve_at" id="reserve_at">
+      </label>
+    </form>
+  </ion-content>
 
   <ion-footer-bar class="bar bar-footer bar-stable u-flex-align-center">
     <h4 class="u-no-spacer">
