@@ -64,9 +64,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
 		$pusher.subscribe('jobs.' + id)
 			.bind('App\\\\Events\\\\JobStatusChange', function(data) {
-				$scope.job = angular.extend(data, {
-					status: status
-				});
+				$scope.job = angular.extend(data, { status: status });
 			});
 
 		$scope.$on('$destroy', function() {

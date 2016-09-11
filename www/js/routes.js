@@ -79,8 +79,5 @@ angular.module('app.routes', [])
     abstract:true
   })
 
-$urlRouterProvider.otherwise('/side-menu21/page1')
-
-
-
+  $urlRouterProvider.otherwise('/side-menu21/page1')
 });
