@@ -9843,6 +9843,18 @@ a.button {
 .u-spacer {
   margin-bottom: 15px; }
 
+.u-no-spacer {
+  margin: 0; }
+
+.u-push-right {
+  margin-left: auto; }
+
+.u-flex-align-center {
+  align-items: center; }
+
+.u-text-icon-left {
+  margin-right: 5px; }
+
 .u-animate-spin {
   animation-name: spin;
   animation-duration: 1s;

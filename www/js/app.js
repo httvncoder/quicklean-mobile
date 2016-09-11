@@ -7,11 +7,12 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', [
   'ionic',
+  'ordinal',
+  'ngNumeraljs',
   'app.controllers',
   'app.routes',
   'app.directives',
-  'app.services',
-  'ordinal'
+  'app.services'
 ])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -31,6 +32,9 @@ angular.module('app', [
   // We need the `$destroy` event for the socket listeners.
   // https://forum.ionicframework.com/t/how-to-destroy-controllers-in-ion-tab-directive/16658
   $ionicConfigProvider.views.maxCache(0);
+})
+.config(function($numeraljsConfigProvider) {
+  $numeraljsConfigProvider.setFormat('currency', '0,0.00');
 })
 .config(function($httpProvider) {
   $httpProvider.interceptors.push(function($q) {

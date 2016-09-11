@@ -39,8 +39,6 @@
             Cancel Reservation
           </button>
         </div>
-
-        <wizard-steps step="1" max="3"></wizard-steps>
       </div>
 
       <div ng-if="job.status === 'Approved'">
@@ -75,8 +73,6 @@
             Cancel Reservation
           </button>
         </div>
-
-        <wizard-steps step="2" max="3"></wizard-steps>
       </div>
 
       <div ng-if="job.status === 'Declined'">
@@ -117,8 +113,6 @@
             Make Another Reservation
           </button>
         </div>
-
-        <wizard-steps step="3" max="3"></wizard-steps>
       </div>
 
       <div ng-if="job.status === 'Cancelled'">
@@ -143,5 +137,14 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="bar bar-footer bar-stable u-flex-align-center" ng-if="job.status.length">
+    <wizard-steps ng-if="['Pending', 'Approved', 'Done'].includes(job.status)" step="job.status === 'Pending' ? 1 : (job.status === 'Approved' ? 2 : 3)" max="3" class="u-pull-left">
+    </wizard-steps>
+
+    <h4 class="u-no-spacer u-push-right">
+      <i class="icon ion-pricetag u-text-icon-left"></i> {{ job.total_bill | numeraljs: 'currency' }}
+    </h4>
   </div>
 </ion-view>
