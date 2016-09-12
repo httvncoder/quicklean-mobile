@@ -9,4 +9,5 @@ Follow [Ionic's Getting Started Guide](http://ionicframework.com/getting-started
 ```bash
 $ ionic serve
 $ gulp 
+$ open localhost:8100
 ```
