@@ -101,6 +101,23 @@
 
       <div ng-if="job.status === 'Done'">
         <div class="u-spacer">
+          <div class="circle positive-bg u-block-center">
+            <i class="icon ion-thumbsup"></i>
+          </div>
+        </div>
+
+        <h5 class="positive">
+          Almost there!
+        </h5>
+
+        <p class="u-text-grey u-spacer">
+          Your clothes are now good as new!
+          <br />Please pay an amount of <strong class="dark">PHP {{ job.total_bill | numeraljs: 'currency' }}</strong> to the counter.
+        </p>
+      </div>
+
+      <div ng-if="job.status === 'Paid'">
+        <div class="u-spacer">
           <div class="circle balanced-bg u-block-center">
             <i class="icon ion-thumbsup"></i>
           </div>
@@ -111,8 +128,8 @@
         </h5>
 
         <p class="u-text-grey u-spacer">
-          Your clothes are good as new!
-          <br />You may pick up your clothes now.
+          You're good to go!
+          <br />Don't forget to pick up your clothes.
         </p>
 
         <div>
@@ -152,7 +169,7 @@
       PHP {{ job.total_bill | numeraljs: 'currency' }}
     </h4>
 
-    <wizard-steps ng-if="['Pending', 'Approved', 'Done'].includes(job.status)" step="job.status === 'Pending' ? 1 : (job.status === 'Approved' ? 2 : 3)" max="3">
+    <wizard-steps ng-if="['Pending', 'Approved', 'Done', 'Paid'].includes(job.status)" step="steps[job.status]" max="4">
     </wizard-steps>
   </div>
 </ion-view>

@@ -24,6 +24,14 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 		queue: -1
 	};
 
+  // Easy dictionary look-up for the wizard
+  $scope.steps = {
+    Pending: 1,
+    Approved: 2,
+    Done: 3,
+    Paid: 4
+  };
+
 	$scope.cancelling = false;
 
 	$scope.cancel = function() {
