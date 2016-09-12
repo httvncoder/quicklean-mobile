@@ -148,7 +148,7 @@
     </div>
   </div>
 
-  <div class="bar bar-footer bar-stable u-flex-align-center u-flex-justify-space-between" ng-if="job.status.length">
+  <div class="bar bar-footer bar-stable u-flex-align-center u-flex-justify-space-between" ng-if="job.status.length && job.status !== 'Cancelled'">
     <h4 class="u-no-spacer">
       <i class="icon ion-pricetag u-text-icon-left"></i>
       PHP {{ job.total_bill | numeraljs: 'currency' }}
