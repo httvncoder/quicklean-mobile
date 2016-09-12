@@ -34,7 +34,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 		$scope.cancelling = true;
 		$ionicLoading.show();
 
-		return $http.put(':app/jobs/' + id + '/cancel')
+		return $http.put(':app/jobs/cancel/' + id)
 			.then(function(res) {
 				$scope.job = res.data.data;
 				$scope.cancelling = false;
