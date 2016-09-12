@@ -95,12 +95,12 @@
     </form>
   </ion-content>
 
-  <ion-footer-bar class="bar bar-footer bar-stable u-flex-align-center">
+  <ion-footer-bar class="bar bar-footer bar-stable u-flex-align-center u-flex-justify-space-between">
     <h4 class="u-no-spacer">
       <i class="icon ion-pricetag u-text-icon-left"></i> {{ total | numeraljs: 'currency' }}
     </h4>
 
-    <button ng-click="submit()" id="reservation-button2" class="button button-positive u-push-right">
+    <button ng-click="submit()" id="reservation-button2" class="button button-positive">
       <i class="icon ion-calendar u-text-icon-left"></i>
       Reserve
     </button>
