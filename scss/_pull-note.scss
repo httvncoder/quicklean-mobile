@@ -1,0 +1,28 @@
+.pull-note {
+  padding: 15px 10px;
+  color: $light;
+  background: $stable;
+  border-radius: 3px;
+
+  &.pull-note--positive {
+    background: $positive;
+  }
+
+  &.pull-note--assertive {
+    background: $assertive;
+  }
+
+  .pull-note__text {
+    padding-left: 40px;
+    margin: 0;
+  }
+
+  .pull-note__link {
+    color: $light;
+  }
+
+  .pull-note__icon {
+    float: left;
+    font-size: 25px;
+  }
+}

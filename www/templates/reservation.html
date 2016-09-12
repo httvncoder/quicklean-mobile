@@ -1,9 +1,19 @@
 <ion-view title="Reservation" id="page2">
   <ion-content padding="true" class="has-header">
-    <div ng-if="form.errors.length" style="background: #e42112; margin-bottom: 10px; color: #fff;" class="padding">
-      <ul>
+    <div ng-if="form.errors.length" class="pull-note pull-note--assertive u-spacer">
+      <i class="icon ion-android-alert pull-note__icon"></i>
+
+      <ul class="pull-note__text">
         <li ng-repeat="error in form.errors">{{ error }}</li>
       </ul>
+    </div>
+
+    <div class="pull-note pull-note--positive u-spacer">
+      <i class="icon ion-ios-information pull-note__icon"></i>
+
+      <p class="pull-note__text">
+        If you're new to Quicklean, you may read our <a href="#" class="pull-note__link">Laundry Tips</a>.
+      </p>
     </div>
 
     <form id="reservation-form1" class="list">

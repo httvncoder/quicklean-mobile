@@ -9953,3 +9953,21 @@ a.button {
 
 .article-block .article-block__text {
   color: #b2b2b2; }
+
+.pull-note {
+  padding: 15px 10px;
+  color: #fff;
+  background: #f8f8f8;
+  border-radius: 3px; }
+  .pull-note.pull-note--positive {
+    background: #387ef5; }
+  .pull-note.pull-note--assertive {
+    background: #ef473a; }
+  .pull-note .pull-note__text {
+    padding-left: 40px;
+    margin: 0; }
+  .pull-note .pull-note__link {
+    color: #fff; }
+  .pull-note .pull-note__icon {
+    float: left;
+    font-size: 25px; }
