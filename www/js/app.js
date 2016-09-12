@@ -8,6 +8,7 @@
 angular.module('app', [
   'ionic',
   'ngNumeraljs',
+  'srph.timestamp-filter',
   'app.controllers',
   'app.routes',
   'app.directives',

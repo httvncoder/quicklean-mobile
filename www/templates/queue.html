@@ -30,7 +30,9 @@
 
         <h5 class="positive">Pending</h5>
 
-        <p class="u-text-grey u-spacer">Please kindly wait,<br />we are still processing your reservation.</p>
+        <p class="u-text-grey u-spacer">
+          Your reservation will be processed on <strong class="dark">{{ job.reserve_at | timestamp | date: 'h:mm a' }}</strong>.
+        </p>
 
         <div>
           <button ng-click="cancel()" class="button button-assertive  button-block">
