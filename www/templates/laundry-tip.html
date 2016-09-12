@@ -1,0 +1,90 @@
+<ion-view title="{{ tip.title }}" id="page3">
+  <ion-content padding="true" class="has-header">
+    <div class="article-block" ng-if="tip.slug === 'water-temperature'">
+      <img src="http://lorempixel.com/g/500/200" class="article-block__cover">
+
+      <h2 class="article-block__title">
+        {{ tip.title }}
+      </h2>
+
+      <div class="article-block__block">
+        <h4 class="article-block__heading">
+          When to use hot water
+        </h4>
+
+        <p class="article-block__text">
+          For whites, typical dirty clothes and diapers, use hot water (130° F). Hot water is best for removing
+          germs and heavy soiling. However, hot water can shrink, fade, and damage some fabrics. So, be sure to
+          read your clothing labels before selecting the hot option.
+        </p>
+      </div>
+
+      <div class="article-block__block">
+        <h4 class="article-block__heading">
+          When to use warm water
+        </h4>
+
+        <p class="article-block__text">
+          For artificial fibers, knits, and jeans, use warm water (90° F). Most of your clothes can be washed in
+          warm water. It offers good cleaning without significant fading or shrinking.
+        </p>
+      </div>
+
+      <div class="article-block__block">
+        <h4 class="article-block__heading">
+          When to use cold water
+        </h4>
+
+        <p class="article-block__text">
+          For dark, bright colors that bleed or has delicate fabrics, use cold water (80 F). Cold water also
+          saves energy, so it is a good choice if you want to be eco-friendly. If you want to use cold water,
+          you may need to pre-treat or pre-soak your clothes if your laundry items are heavily stained.
+        </p>
+      </div>
+    </div>
+
+    <div class="article-block" ng-if="tip.slug === 'detergents'">
+      <img src="http://lorempixel.com/g/500/200" class="article-block__cover">
+
+      <h2 class="article-block__title">
+        {{ tip.title }}
+      </h2>
+
+      <div class="article-block__block">
+        <h4 class="article-block__heading">
+          Liquids
+        </h4>
+
+        <p class="article-block__text">
+          All-purpose laundry detergents that are especially effective on food, greasy, and oily soils. Since they are
+          liquids, they are good for pretreating spots and stains.
+        </p>
+      </div>
+
+      <div class="article-block__block">
+        <h4 class="article-block__heading">
+          Powders
+        </h4>
+
+        <p class="article-block__text">
+          All-purpose laundry detergents which are ideal for general washday loads. Especially effective on lifting out
+          clay and ground-in dirt, thus ideal for children's play clothes.
+        </p>
+      </div>
+
+      <div class="article-block__block">
+        <h4 class="article-block__heading">
+          Ultra Detergents
+        </h4>
+
+        <p class="article-block__text">
+          Most liquid and powder detergents are now concentrated. They come in much smaller packages &mdash; yet offer the
+          same amount of cleaning power as the familiar products in larger packages. You need less ultra detergent than
+          with an unconcentrated product so follow the label instructions and use the measuring cap or scoop that comes with the product.
+        </p>
+      </div>
+    </div>
+
+    <img src="img/symbols.png" ng-if="tip.slug === 'symbols'">
+  </ion-content>
+</ion-view>

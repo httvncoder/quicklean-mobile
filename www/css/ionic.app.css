@@ -9837,6 +9837,9 @@ a.button {
 .u-text-icon-left {
   margin-right: 5px; }
 
+.u-text-icon-right {
+  margin-left: 5px; }
+
 .u-animate-spin {
   animation-name: spin;
   animation-duration: 1s;
@@ -9909,3 +9912,44 @@ a.button {
     height: 1px;
     width: 15px;
     background: #387ef5; }
+
+.article-card {
+  position: relative;
+  display: block;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #444; }
+  .article-card:not(:last-child) {
+    margin-bottom: 25px; }
+  .article-card .article-card__cover {
+    height: 250px;
+    width: 100%;
+    opacity: 0.8; }
+  .article-card .article-card__title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 20px 10px 10px 10px;
+    width: 100%;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent); }
+
+.article-block .article-block__cover {
+  height: 250px;
+  width: 100%;
+  border-radius: 3px; }
+
+.article-block .article-block__title {
+  margin: 0;
+  margin-bottom: 50px; }
+
+.article-block .article-block__block {
+  margin-bottom: 25px; }
+
+.article-block .article-block__heading {
+  margin: 0;
+  margin-bottom: 10px; }
+
+.article-block .article-block__text {
+  color: #b2b2b2; }

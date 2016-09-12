@@ -1,0 +1,25 @@
+.article-block {
+  .article-block__cover {
+    height: 250px;
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  .article-block__title {
+    margin: 0;
+    margin-bottom: 50px;
+  }
+
+  .article-block__block {
+    margin-bottom: 25px;
+  }
+
+  .article-block__heading {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .article-block__text {
+    color: #b2b2b2;
+  }
+}

@@ -70,13 +70,33 @@ angular.module('app.routes', [])
         templateUrl: 'templates/laundry-tips.html',
         controller: 'laundryTipsCtrl'
       }
+    },
+    resolve: {
+      tips: ['TipRepository', function(TipRepository) {
+        return TipRepository.all();
+      }]
+    }
+  })
+
+  .state('menu.laundry-tip', {
+    url: '/page3/:tip',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/laundry-tip.html',
+        controller: 'laundryTipCtrl'
+      }
+    },
+    resolve: {
+      tip: ['$stateParams', 'TipRepository', function($stateParams, TipRepository) {
+        return TipRepository.get($stateParams.tip);
+      }]
     }
   })
 
   .state('menu', {
     url: '/side-menu21',
     templateUrl: 'templates/menu.html',
-    abstract:true
+    abstract: true
   })
 
   $urlRouterProvider.otherwise('/side-menu21/page1')

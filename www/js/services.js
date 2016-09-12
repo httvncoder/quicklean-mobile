@@ -100,4 +100,32 @@ angular.module('app.services', [])
       return total;
     }
   };
+}])
+
+.factory('TipRepository', [function() {
+  var tips = [{
+    title: 'Stain Guide',
+    slug: 'stain'
+  }, {
+    title: 'Laundry Symbols',
+    slug: 'symbols'
+  }, {
+    title: 'The Proper Water Temperature',
+    slug: 'water-temperature'
+  }, {
+    title: 'The Different Types of Detergents',
+    slug: 'detergents'
+  }]
+
+  return {
+    all: function() {
+      return tips;
+    },
+
+    get: function(slug) {
+      return tips.find(function(tip) {
+        return tip.slug === slug;
+      });
+    }
+  };
 }]);
