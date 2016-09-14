@@ -98,7 +98,7 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
 		data: {
 			name: '',
 			phone: '',
-			service_type: 'Self',
+			service_type: 'self',
 			kilogram: '8',
 			washer_mode: 'clean',
 			dryer_mode: '19',
