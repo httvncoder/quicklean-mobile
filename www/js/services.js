@@ -64,7 +64,7 @@ angular.module('app.services', [])
           total += 5;
           break;
 
-        case 'origina':
+        case 'original':
           total += 12;
           break;
       }
