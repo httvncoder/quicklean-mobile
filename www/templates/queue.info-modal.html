@@ -1,0 +1,118 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Reservation Information</h1>
+    <button class="button button-icon ion-chevron-right pull-right" ng-click="info.hide()"></button>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="list card">
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">UUID</div>
+          <div class="u-pull-right">{{ job.name }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Name</div>
+          <div class="u-pull-right">{{ job.name }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Phone</div>
+          <div class="u-pull-right">{{ job.phone }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Service Type</div>
+          <div class="u-pull-right">{{ job.service_type }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Kilogram</div>
+          <div class="u-pull-right">{{ job.kilogram }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Washer Mode</div>
+          <div class="u-pull-right">{{ job.washer_mode }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Dryer Mode</div>
+          <div class="u-pull-right">{{ job.dryer_mode }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Detergent</div>
+          <div class="u-pull-right">{{ job.detergent }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Bleach</div>
+          <div class="u-pull-right">{{ job.bleach }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Fabric Conditioner</div>
+          <div class="u-pull-right">{{ job.fabric_conditioner }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Pressed</div>
+          <div class="u-pull-right">
+            <span ng-if="job.is_press"><i class="icon ion-checkmark balanced"></i></span>
+            <span ng-if="!job.is_press"><i class="icon ion-close-round assertive"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Folded</div>
+          <div class="u-pull-right">
+            <span ng-if="job.is_fold"><i class="icon ion-checkmark balanced"></i></span>
+            <span ng-if="!job.is_fold"><i class="icon ion-close-round assertive"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Reservation Date</div>
+          <div class="u-pull-right">
+            <small>{{ job.reserve_at | timestamp | date: 'MMMM d, y h:mm a' }}</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Total Bill</div>
+          <div class="u-pull-right">
+            PHP {{ job.total_bill | numeraljs: 'currency' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

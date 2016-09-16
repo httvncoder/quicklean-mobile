@@ -1,4 +1,9 @@
 <ion-view title="Queue" id="page1">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon ion-information-circled" ng-click="info.show()">
+    </button>
+  </ion-nav-buttons>
+
   <ion-content padding="true" class="has-header container">
     <div>
       <div ng-if="!job.status.length">
@@ -229,13 +234,7 @@
     </div>
   </ion-content>
 
-  <div class="bar bar-footer bar-stable u-flex-align-center u-flex-justify-space-between" ng-if="job.status.length && job.status !== 'Cancelled'">
-    <h4 class="u-no-spacer">
-      <i class="icon ion-pricetag u-text-icon-left"></i>
-      PHP {{ job.total_bill | numeraljs: 'currency' }}
-    </h4>
-
-    <wizard-steps ng-if="['Reserved', 'Approved', 'Pending washer', 'Pending dryer', 'Done', 'Paid'].includes(job.status)" step="steps[job.status]" max="6">
+  <div class="bar bar-footer bar-stable u-flex-align-center" ng-if="job.status.length && job.status !== 'Cancelled'">
+    <wizard-steps ng-if="['Reserved', 'Approved', 'Pending washer', 'Pending dryer', 'Done', 'Paid'].includes(job.status)" step="steps[job.status]" max="6" class="u-block-center">
     </wizard-steps>
-  </div>
 </ion-view>

@@ -9,11 +9,12 @@ angular.module('app.controllers', [])
 	'$pusher',
 	'$ionicPopup',
 	'$ionicLoading',
+  '$ionicModal',
 	'job',
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $ionicLoading, job) {
+function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $ionicLoading, $ionicModal, job) {
 	var id = $storage.get('id');
 
 	connect();
@@ -33,6 +34,15 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
     'Done': 5,
     'Paid': 6
   };
+
+  $scope.info = null;
+
+  $ionicModal.fromTemplateUrl('templates/queue.info-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-right-left'
+  }).then(function(modal) {
+    $scope.info = modal;
+  });
 
 	$scope.cancelling = false;
 

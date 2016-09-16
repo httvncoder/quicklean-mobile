@@ -9982,3 +9982,22 @@ a.button {
   .pull-note .pull-note__icon {
     float: left;
     font-size: 25px; }
+
+.slide-in-right-left {
+  -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0); }
+
+.slide-in-right-left.ng-enter,
+.slide-in-right-left > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+.slide-in-right-left.ng-enter-active,
+.slide-in-right-left > .ng-enter-active {
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0); }
+
+.slide-in-right-left.ng-leave,
+.slide-in-right-left > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms; }
