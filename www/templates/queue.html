@@ -49,7 +49,29 @@
         </div>
 
         <h5 class="positive">
-          On-going...
+          Approved
+        </h5>
+
+        <p class="u-text-grey u-spacer">
+          Your reservation for <strong class="dark">{{ job.reserve_at | timestamp | date: 'MMMM d, y h:mm a' }}</strong> has already been approved.
+        </p>
+
+        <div>
+          <button ng-click="cancel()" class="button button-assertive  button-block">
+            Cancel Reservation
+          </button>
+        </div>
+      </div>
+
+      <div ng-if="job.status === 'Pending washer'">
+        <div class="u-spacer">
+          <div class="circle positive-bg u-block-center">
+            <i class="icon ion-load-c u-animate-spin"></i>
+          </div>
+        </div>
+
+        <h5 class="positive">
+          Washing on-going...
         </h5>
 
         <p class="u-text-grey u-spacer">
@@ -59,17 +81,39 @@
         <div ng-if="job.queue" class="u-spacer">
           <span class="label">
             <h4 class="label-header">
-              <span ng-if="job.queue.washer">#{{ job.queue.washer }}</span>
-              <span ng-if="!job.queue.washer"><i class="icon ion-checkmark balanced"></i></span>
+              #{{ job.queue }}
             </h4>
 
             <h6 class="label-name">{{ job.washer.name }}</h6>
           </span>
+        </div>
 
+        <div>
+          <button ng-click="cancel()" class="button button-assertive  button-block">
+            Cancel Reservation
+          </button>
+        </div>
+      </div>
+
+      <div ng-if="job.status === 'Pending dryer'">
+        <div class="u-spacer">
+          <div class="circle positive-bg u-block-center">
+            <i class="icon ion-load-c u-animate-spin"></i>
+          </div>
+        </div>
+
+        <h5 class="positive">
+          Dryer on-going...
+        </h5>
+
+        <p class="u-text-grey u-spacer">
+          Your clothes are now being dryed.
+        </p>
+
+        <div ng-if="job.queue" class="u-spacer">
           <span class="label">
             <h4 class="label-header">
-              <span ng-if="job.queue.dryer">#{{ job.queue.dryer }}</span>
-              <span ng-if="!job.queue.dryer"><i class="icon ion-checkmark balanced"></i></span>
+              #{{ job.queue }}
             </h4>
 
             <h6 class="label-name">{{ job.dryer.name }}</h6>
@@ -191,7 +235,7 @@
       PHP {{ job.total_bill | numeraljs: 'currency' }}
     </h4>
 
-    <wizard-steps ng-if="['Pending', 'Approved', 'Done', 'Paid'].includes(job.status)" step="steps[job.status]" max="4">
+    <wizard-steps ng-if="['Reserved', 'Approved', 'Pending washer', 'Pending dryer', 'Done', 'Paid'].includes(job.status)" step="steps[job.status]" max="6">
     </wizard-steps>
   </div>
 </ion-view>

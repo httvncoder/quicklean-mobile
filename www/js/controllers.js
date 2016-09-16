@@ -26,10 +26,12 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
   // Easy dictionary look-up for the wizard
   $scope.steps = {
-    Pending: 1,
-    Approved: 2,
-    Done: 3,
-    Paid: 4
+    'Reserved': 1,
+    'Approved': 2,
+    'Pending washer': 3,
+    'Pending dryer': 4,
+    'Done': 5,
+    'Paid': 6
   };
 
 	$scope.cancelling = false;
@@ -72,7 +74,8 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
 		$pusher.subscribe('job.' + id)
 			.bind('App\\Events\\JobStatusChange', function(data) {
-				$scope.job = data;
+				$scope.job = data.job;
+        $scope.$apply();
 			});
 
 		$scope.$on('$destroy', function() {
