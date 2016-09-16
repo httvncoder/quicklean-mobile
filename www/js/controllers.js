@@ -76,7 +76,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 			});
 
 		$scope.$on('$destroy', function() {
-			$pusher.unsubscribe('jobs.' + id);
+			$pusher.unsubscribe('job.' + id);
 		});
 	}
 }])
