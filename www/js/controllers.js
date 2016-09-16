@@ -37,12 +37,14 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
   $scope.info = null;
 
-  $ionicModal.fromTemplateUrl('templates/queue.info-modal.html', {
-    scope: $scope,
-    animation: 'slide-in-right-left'
-  }).then(function(modal) {
-    $scope.info = modal;
-  });
+  if ( id ) {
+    $ionicModal.fromTemplateUrl('templates/queue.info-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-right-left'
+    }).then(function(modal) {
+      $scope.info = modal;
+    });
+  }
 
 	$scope.cancelling = false;
 
@@ -92,6 +94,10 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 			$pusher.unsubscribe('job.' + id);
 		});
 	}
+
+  function modal() {
+
+  }
 }])
 
 .controller('reservationCtrl', [

@@ -1,6 +1,6 @@
 <ion-view title="Queue" id="page1">
   <ion-nav-buttons side="secondary">
-    <button class="button button-icon ion-information-circled" ng-click="info.show()">
+    <button ng-if="job.status.length" class="button button-icon ion-information-circled" ng-click="info.show()">
     </button>
   </ion-nav-buttons>
 
