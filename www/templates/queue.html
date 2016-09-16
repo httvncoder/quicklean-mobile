@@ -86,13 +86,33 @@
       <div ng-if="job.status === 'Declined'">
         <div class="u-spacer">
           <div class="circle assertive-bg u-block-center">
-            <i class="icon ion-alert"></i>
+            <i class="icon ion-thumbsdown"></i>
           </div>
         </div>
 
         <h5 class="assertive">Declined</h5>
 
         <p class="u-text-grey u-spacer">Sorry, we had to decline your reservation.</p>
+
+        <div>
+          <button ng-click="new()" class="button button-positive button-block">
+            Make Another Reservation
+          </button>
+        </div>
+      </div>
+
+      <div ng-if="job.status === 'Expired'">
+        <div class="u-spacer">
+          <div class="circle assertive-bg u-block-center">
+            <i class="icon ion-alert"></i>
+          </div>
+        </div>
+
+        <h5 class="assertive">Expired</h5>
+
+        <p class="u-text-grey u-spacer">
+          Oops! It looks like that your reservation wasn't approved in time.
+        </p>
 
         <div>
           <button ng-click="new()" class="button button-positive button-block">
