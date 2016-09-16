@@ -14,10 +14,25 @@
         </ion-header-bar>
         <ion-content padding="false" class="side-menu-left has-header">
             <ion-list id="menu-list1">
-                <ion-item id="menu-list-item1" ui-sref="menu.queue" menu-close="">Queue</ion-item>
-                <ion-item id="menu-list-item2" ui-sref="menu.reservation" menu-close="">Reservation</ion-item>
-                <ion-item id="menu-list-item3" ui-sref="menu.machines" menu-close="">Machines</ion-item>
-                <ion-item id="menu-list-item3" ui-sref="menu.laundry-tips" menu-close="">Laundry Tips</ion-item>
+                <ion-item class="item-icon-left" id="menu-list-item1" ui-sref="menu.queue" menu-close="">
+                  <i class="icon ion-pound"></i>
+                  Queue
+                </ion-item>
+
+                <ion-item class="item-icon-left" id="menu-list-item2" ui-sref="menu.reservation" menu-close="">
+                  <i class="icon ion-calendar"></i>
+                  Reservation
+                </ion-item>
+
+                <ion-item class="item-icon-left" id="menu-list-item3" ui-sref="menu.machines" menu-close="">
+                  <i class="icon ion-levels"></i>
+                  Machines
+                </ion-item>
+
+                <ion-item class="item-icon-left" id="menu-list-item3" ui-sref="menu.laundry-tips" menu-close="">
+                  <i class="icon ion-ios-lightbulb-outline"></i>
+                  Laundry Tips
+                </ion-item>
             </ion-list>
         </ion-content>
     </ion-side-menu>
