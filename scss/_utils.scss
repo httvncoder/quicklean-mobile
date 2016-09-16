@@ -11,6 +11,16 @@
   }
 }
 
+.u-bg-light-balanced {
+  color: $balanced;
+  background: rgba($balanced, 0.1);
+}
+
+.u-bg-light-assertive {
+  color: $assertive
+  background: rgba($assertive, 0.1);
+}
+
 .u-pull-left {
   float: left;
 }

@@ -9824,6 +9824,14 @@ a.button {
   display: table;
   clear: both; }
 
+.u-bg-light-balanced {
+  color: #33cd5f;
+  background: rgba(51, 205, 95, 0.1); }
+
+.u-bg-light-assertive {
+  color: rgba(239, 71, 58, 0.8);
+  background: rgba(239, 71, 58, 0.3); }
+
 .u-pull-left {
   float: left; }
 

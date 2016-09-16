@@ -1,7 +1,7 @@
 <ion-view title="Machines" id="page3">
   <ion-content padding="true" class="has-header">
     <div ng-if="machines.length" class="list card">
-      <div ng-repeat="machine in machines" class="item">
+      <div ng-repeat="machine in machines" ng-class="{'item': true, 'u-bg-light-balanced': machine.availability === '0 Jobs Pending', 'u-bg-light-assertive': machine.availability !== '0 Jobs Pending'}">
         <div class="u-clearfix">
           <div class="u-pull-left">{{ machine.name }}</div>
           <div class="u-pull-right">{{ machine.availability }}</div>
