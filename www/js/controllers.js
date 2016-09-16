@@ -151,6 +151,41 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
 	}
 }])
 
+.controller('machinesCtrl', ['$scope', '$http', '$q', '$ionicLoading', '$ionicPopup',
+function($scope, $http, $q, $ionicLoading, $ionicPopup) {
+  var loading = false;
+  $scope.machines = [];
+  $scope.load = load;
+
+  load();
+
+  function load() {
+    if ( loading ) {
+      return;
+    }
+
+    loading = true;
+    $ionicLoading.show();
+
+    return $http.get(':app/machines')
+      .then(function(res) {
+        $scope.machines = res.data;
+        loading = false;
+        $ionicLoading.hide();
+      })
+      .catch(function() {
+        loading = false;
+        return $q.reject($ionicLoading.hide());
+      })
+      .catch(function() {
+        $ionicPopup.alert({
+          title: 'Server Error',
+          template: 'An error occured while trying to connect to the server. Please try again!'
+        });
+      });
+  }
+}])
+
 .controller('laundryTipsCtrl', ['$scope', '$stateParams', 'tips',
 function ($scope, $stateParams, tips) {
   $scope.tips = tips;

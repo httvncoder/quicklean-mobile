@@ -63,6 +63,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.machines', {
+    url: '/page4',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/machines.html',
+        controller: 'machinesCtrl'
+      }
+    }
+  })
+
   .state('menu.laundry-tips', {
     url: '/page3',
     views: {

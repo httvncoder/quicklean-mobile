@@ -1,0 +1,17 @@
+<ion-view title="Machines" id="page3">
+  <ion-content padding="true" class="has-header">
+    <div ng-if="machines.length" class="list card">
+      <div ng-repeat="machine in machines" class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">{{ machine.name }}</div>
+          <div class="u-pull-right">{{ machine.availability }}</div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon button-clear ion-refresh" ng-click="load()">
+    </button>
+  </ion-nav-buttons>
+</ion-view>

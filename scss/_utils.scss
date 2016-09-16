@@ -3,6 +3,22 @@
   margin-right: auto;
 }
 
+.u-clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.u-pull-left {
+  float: left;
+}
+
+.u-pull-right {
+  float: right;
+}
+
 .u-text-grey {
   color: #b2b2b2;
 }
