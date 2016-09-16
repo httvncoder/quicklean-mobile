@@ -70,8 +70,8 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 			return;
 		}
 
-		$pusher.subscribe('jobs.' + id)
-			.bind('App\\\\Events\\\\JobStatusChange', function(data) {
+		$pusher.subscribe('job.' + id)
+			.bind('App\\Events\\JobStatusChange', function(data) {
 				$scope.job = data;
 			});
 
@@ -128,7 +128,9 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
 		$scope.form.errors = [];
 		$ionicLoading.show();
 
-		return $http.post(':app/jobs', $scope.form.data)
+    var payload = angular.extend($scope.form.data, { status: 'reserved' });
+
+		return $http.post(':app/jobs', payload)
 			.then(function(res) {
 				$ionicLoading.hide();
 				$scope.form.loading = false;
