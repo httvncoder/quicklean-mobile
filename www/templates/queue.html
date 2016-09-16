@@ -21,17 +21,17 @@
         </div>
       </div>
 
-      <div ng-if="job.status === 'Pending'">
+      <div ng-if="job.status === 'Reserved'">
         <div class="u-spacer">
           <div class="circle positive-bg u-block-center">
             <i class="icon ion-ios-list-outline"></i>
           </div>
         </div>
 
-        <h5 class="positive">Pending</h5>
+        <h5 class="positive">For Approval</h5>
 
         <p class="u-text-grey u-spacer">
-          Your reservation will be processed on <strong class="dark">{{ job.reserve_at | timestamp | date: 'h:mm a' }}</strong>.
+          Your reservation for <strong class="dark">{{ job.reserve_at | timestamp | date: 'MMMM d, y h:mm a' }}</strong> is still waiting for approval.
         </p>
 
         <div>
