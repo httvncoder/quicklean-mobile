@@ -40,7 +40,7 @@ angular.module('app', [
   $httpProvider.interceptors.push(function($q) {
     return {
       request: function(config) {
-        if ( config.url.includes(':app/') ) {
+        if ( /\:app/.test(config.url) ) {
           config.url = config.url.replace(':app/', 'http://quicklean.symvel.com/api/');
         }
 
