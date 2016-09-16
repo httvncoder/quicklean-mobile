@@ -9829,8 +9829,8 @@ a.button {
   background: rgba(51, 205, 95, 0.1); }
 
 .u-bg-light-assertive {
-  color: rgba(239, 71, 58, 0.8);
-  background: rgba(239, 71, 58, 0.3); }
+  color: #ef473a;
+  background: rgba(239, 71, 58, 0.1); }
 
 .u-pull-left {
   float: left; }
@@ -9991,6 +9991,24 @@ a.button {
     float: left;
     font-size: 25px; }
 
+.media {
+  padding: 20px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6d1454+0,f6921e+100 */
+  background: linear-gradient(135deg, #6d1454 0%, #f6921e 100%); }
+  .media .media__img {
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    width: 30%;
+    line-height: 1; }
+  .media .media__heading {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #fff; }
+  .media .media__sub {
+    margin: 0;
+    color: #fff; }
+
 .slide-in-right-left {
   -webkit-transform: translate(100%, 0);
   transform: translate(100%, 0); }
@@ -10009,3 +10027,9 @@ a.button {
 .slide-in-right-left > .ng-leave {
   -webkit-transition: all ease-in-out 250ms;
   transition: all ease-in-out 250ms; }
+
+.bar-purple {
+  color: #fff !important;
+  background: #6d1454 !important; }
+  .bar-purple * {
+    color: #fff !important; }
