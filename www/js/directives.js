@@ -31,4 +31,29 @@ angular.module('app.directives', [])
       })();
     }]
 	};
+}])
+
+.directive('infoModal', [function() {
+  return {
+    scope: {
+      template: '@'
+    },
+
+    template: [
+      '<button class="button button-clear button-dark button-small" ng-click="modal.show()">',
+        '<i class="icon ion-information-circled"></i>',
+      '</button>'
+    ].join('\n'),
+
+    controller: ['$scope', '$ionicModal', function($scope, $ionicModal) {
+      $scope.modal = null;
+
+      $ionicModal.fromTemplateUrl('templates/' + $scope.template, {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+      })
+    }]
+  }
 }]);

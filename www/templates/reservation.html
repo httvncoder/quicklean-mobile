@@ -28,7 +28,11 @@
       </label>
 
       <label class="item item-select" id="reservation-select1" name="service_type">
-        <span class="input-label">Service Type</span>
+        <span class="input-label">
+          Service Type
+          <info-modal template="reservation.service-type.html"></info-modal>
+        </span>
+
         <select ng-model="form.data.service_type" id="service_type">
           <option value="self">Self</option>
           <option value="employee">Employee</option>
@@ -36,7 +40,11 @@
       </label>
 
       <label class="item item-select" id="reservation-select2" name="kilogram">
-        <span class="input-label">Kilogram</span>
+        <span class="input-label">
+          Kilogram
+          <info-modal template="reservation.kg.html"></info-modal>
+        </span>
+
         <select ng-model="form.data.kilogram" id="kilogram">
           <option value="8">8 kg</option>
           <option value="16">16 kg</option>
@@ -44,7 +52,11 @@
       </label>
 
       <label class="item item-select" id="reservation-select3" name="washer_mode">
-        <span class="input-label">Washer Mode</span>
+        <span class="input-label">
+          Washer Mode
+          <info-modal template="reservation.washer.html"></info-modal>
+        </span>
+
         <select ng-model="form.data.washer_mode" id="washer_mode">
           <option value="clean">Klean</option>
           <option value="cleaner">Kleaner</option>
@@ -53,7 +65,11 @@
       </label>
 
       <label class="item item-select" id="reservation-select4" name="dryer_mode">
-        <span class="input-label">Dryer Mode</span>
+        <span class="input-label">
+          Dryer Mode
+          <info-modal template="reservation.dryer.html"></info-modal>
+        </span>
+
         <select ng-model="form.data.dryer_mode" id="dryer_mode">
           <option value="19">19 mins</option>
           <option value="24">24 mins</option>
@@ -62,7 +78,11 @@
       </label>
 
       <label class="item item-select" id="reservation-select5" name="detergent">
-        <span class="input-label">Detergent</span>
+        <span class="input-label">
+          Detergent
+          <info-modal template="reservation.detergent.html"></info-modal>
+        </span>
+
         <select id="detergent" ng-model="form.data.detergent">
           <option value="ariel">Ariel</option>
           <option value="pride">Pride</option>
@@ -72,7 +92,11 @@
       </label>
 
       <label class="item item-select" id="reservation-select6" name="bleach">
-        <span class="input-label">Bleach</span>
+        <span class="input-label">
+          Bleach
+          <info-modal template="reservation.bleach.html"></info-modal>
+        </span>
+
         <select ng-model="form.data.bleach">
           <option value="colorsafe">Colorsafe</option>
           <option value="original">Original</option>
@@ -81,7 +105,10 @@
       </label>
 
       <label class="item item-select" id="reservation-select7" name="fabric_conditioner">
-        <span class="input-label">Fabric Conditioner</span>
+        <span class="input-label">
+          Fabric Conditioner
+          <info-modal template="reservation.conditioner.html"></info-modal>
+        </span>
 
         <select ng-model="form.data.fabric_conditioner" id="fabric_conditioner">
           <option value="downy">Downy</option>
