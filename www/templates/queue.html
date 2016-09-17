@@ -58,7 +58,13 @@
         </h5>
 
         <p class="u-text-grey u-spacer">
-          Your reservation for <strong class="dark">{{ job.reserve_at | timestamp | date: 'MMMM d, y h:mm a' }}</strong> has already been approved.
+          <span ng-if="job.reserve_at != null">
+            Your reservation for <strong class="dark">{{ job.reserve_at | timestamp | date: 'MMMM d, y h:mm a' }}</strong> has already been approved.
+          </span>
+
+          <span ng-if="job.reserve_at == null">
+            Please wait while the clerk assigns you to the most available machine.
+          </span>
         </p>
 
         <div>
