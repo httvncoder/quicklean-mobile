@@ -87,7 +87,17 @@
           <option value="ariel">Ariel</option>
           <option value="pride">Pride</option>
           <option value="tide">Tide</option>
-          <option>I have one</option>
+          <option value="i_have_one">I have one</option>
+        </select>
+      </label>
+
+      <label class="item item-select" id="reservation-select699" name="detergent_qty" ng-if="form.data.detergent !== 'i_have_one'">
+        <span class="input-label">Detergent Qty.</span>
+
+        <select ng-model="form.data.detergent_qty">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
         </select>
       </label>
 
@@ -104,6 +114,16 @@
         </select>
       </label>
 
+      <label class="item item-select" id="reservation-select6969" name="bleach_qty" ng-if="form.data.bleach !== 'i_have_one'">
+        <span class="input-label">Bleach Qty.</span>
+
+        <select ng-model="form.data.bleach_qty">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </label>
+
       <label class="item item-select" id="reservation-select7" name="fabric_conditioner">
         <span class="input-label">
           Fabric Conditioner
@@ -113,6 +133,16 @@
         <select ng-model="form.data.fabric_conditioner" id="fabric_conditioner">
           <option value="downy">Downy</option>
           <option value="i_have_one">I have one</option>
+        </select>
+      </label>
+
+      <label class="item item-select" id="reservation-select69" name="fabric_conditioner_qty" ng-if="form.data.fabric_conditioner !== 'i_have_one'">
+        <span class="input-label">Fabric Conditioner Qty.</span>
+
+        <select ng-model="form.data.fabric_conditioner_qty">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
         </select>
       </label>
 

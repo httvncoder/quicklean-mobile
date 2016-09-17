@@ -119,8 +119,11 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
 			washer_mode: 'clean',
 			dryer_mode: '19',
 			detergent: 'ariel',
+      detergent_qty: '1',
 			bleach: 'colorsafe',
+      bleach_qty: '1',
 			fabric_conditioner: 'downy',
+      fabric_conditioner_qty: '1',
 			is_press: false,
 			is_fold: false,
 			reserve_at: ''
@@ -185,8 +188,11 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
       washer_mode: 'clean',
       dryer_mode: '19',
       detergent: 'ariel',
+      detergent_qty: '1',
       bleach: 'colorsafe',
+      bleach_qty: '1',
       fabric_conditioner: 'downy',
+      fabric_conditioner_qty: '1',
       is_press: false,
       is_fold: false
     },
