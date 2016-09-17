@@ -38,34 +38,39 @@ angular.module('app.services', [])
     compute: function(job) {
       var total = 0;
 
+      var detergentQuantity = parseInt(job.detergent_qty, 10);
+      var conditionerQuantity = parseInt(job.fabric_conditioner_qty, 10);
+      var bleachQuantity = parseInt(job.bleach_qty, 10);
+
       if ( job.is_fold ) {
-        total += 35;
+        total += job.kilogram == 8 ? 35 : 80;
       }
 
       switch ( job.detergent ) {
         case 'ariel':
-          total += 12;
+          total += 12 * detergentQuantity;
           break;
 
         case 'tide':
-          total += 10;
+          total += 10 * detergentQuantity;
           break;
 
         case 'pride':
-          total += 6;
+          total += 6 * detergentQuantity;
+          break;
       }
 
       if ( job.fabric_conditioner === 'downy' ) {
-        total += 10;
+        total += 10 * conditionerQuantity;
       }
 
       switch ( job.bleach ) {
         case 'colorsafe':
-          total += 5;
+          total += 5 * bleachQuantity;
           break;
 
         case 'original':
-          total += 12;
+          total += 12 * bleachQuantity;
           break;
       }
 
