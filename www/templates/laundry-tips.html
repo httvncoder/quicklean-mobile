@@ -1,7 +1,7 @@
 <ion-view title="Laundry Tips" id="page3">
   <ion-content padding="true" class="has-header">
     <a ng-repeat="tip in tips" ui-sref="menu.laundry-tip({ tip: tip.slug })" class="article-card">
-      <img src="http://lorempixel.com/g/500/200" class="article-card__cover">
+      <img ng-src="{{ tip.cover }}" class="article-card__cover">
 
       <h4 class="article-card__title">
         {{ tip.title }}

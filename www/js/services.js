@@ -105,16 +105,20 @@ angular.module('app.services', [])
 .factory('TipRepository', [function() {
   var tips = [{
     title: 'Stain Guide',
-    slug: 'stain'
+    slug: 'stain',
+    cover: 'img/tip-stain.jpg'
   }, {
     title: 'Laundry Symbols',
-    slug: 'symbols'
+    slug: 'symbols',
+    cover: 'img/tip-symbols.png'
   }, {
     title: 'The Proper Water Temperature',
-    slug: 'water-temperature'
+    slug: 'water-temperature',
+    cover: 'img/tip-water.jpg'
   }, {
     title: 'The Different Types of Detergents',
-    slug: 'detergents'
+    slug: 'detergents',
+    cover: 'img/tip-detergent.jpg'
   }]
 
   return {
