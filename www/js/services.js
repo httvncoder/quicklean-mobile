@@ -128,4 +128,21 @@ angular.module('app.services', [])
       });
     }
   };
+}])
+
+.factory('APIFactory', [function() {
+  return {
+    /**
+     * @param {object} errors
+     * @return {object} errors
+     *
+     * Transform errors into usable format
+     */
+    transform: function transform(errors) {
+      return Object.keys(errors)
+        .map(function(key) {
+          return errors[key][0];
+        });
+    }
+  };
 }]);

@@ -63,6 +63,66 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.walkin', {
+    url: '/page5',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/walkin.html',
+        controller: 'walkinCtrl'
+      }
+    },
+    resolve: {
+      // Check for existing jobs. If the user has one,
+      // redirect him back to the queue page.
+      existing: ['$storage', '$state', '$ionicHistory', '$ionicPopup', function($storage, $state, $ionicHistory, $ionicPopup) {
+        if ( $storage.get('id') ) {
+          $ionicPopup.show({
+            title: 'Oops!',
+            template: 'It appears that you still have an existing reservation. You can only have one at a time.',
+            buttons: [{
+              text: 'OK',
+              type: 'button-positive',
+              onTap: function() {
+                $ionicHistory.nextViewOptions({ disableBack: true });
+                $state.go('menu.queue');
+              }
+            }]
+          });
+        }
+      }]
+    }
+  })
+
+  .state('menu.queue-options', {
+    url: '/page6',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/queue-options.html',
+        controller: 'queueOptionsCtrl'
+      }
+    },
+    resolve: {
+      // Check for existing jobs. If the user has one,
+      // redirect him back to the queue page.
+      existing: ['$storage', '$state', '$ionicHistory', '$ionicPopup', function($storage, $state, $ionicHistory, $ionicPopup) {
+        if ( $storage.get('id') ) {
+          $ionicPopup.show({
+            title: 'Oops!',
+            template: 'It appears that you still have an existing reservation. You can only have one at a time.',
+            buttons: [{
+              text: 'OK',
+              type: 'button-positive',
+              onTap: function() {
+                $ionicHistory.nextViewOptions({ disableBack: true });
+                $state.go('menu.queue');
+              }
+            }]
+          });
+        }
+      }]
+    }
+  })
+
   .state('menu.machines', {
     url: '/page4',
     views: {

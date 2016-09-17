@@ -76,7 +76,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
 	$scope.new = function() {
 		$storage.destroy('id');
-		$state.go('menu.reservation');
+		$state.go('menu.queue-options');
 	}
 
 	function connect() {
@@ -94,10 +94,6 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 			$pusher.unsubscribe('job.' + id);
 		});
 	}
-
-  function modal() {
-
-  }
 }])
 
 .controller('reservationCtrl', [
@@ -109,10 +105,11 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
   '$storage',
   '$ionicLoading',
   'JobFactory',
+  'APIFactory',
  // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading, JobFactory) {
+function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading, JobFactory, APIFactory) {
 	$scope.form = {
 		data: {
 			name: '',
@@ -159,17 +156,73 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
 			})
 			.catch(function(res) {
 				$ionicLoading.hide();
-				$scope.form.errors = transform(res.data);
+				$scope.form.errors = APIFactory.transform(res.data);
 				$scope.form.loading = false;
 			});
 	}
+}])
 
-	function transform(errors) {
-		return Object.keys(errors)
-			.map(function(key) {
-				return errors[key][0];
-			});
-	}
+.controller('walkinCtrl', [
+  '$scope',
+  '$stateParams',
+  '$state',
+  '$http',
+  '$ionicHistory',
+  '$storage',
+  '$ionicLoading',
+  'JobFactory',
+  'APIFactory',
+ // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading, JobFactory, APIFactory) {
+  $scope.form = {
+    data: {
+      name: '',
+      phone: '',
+      service_type: 'self',
+      kilogram: '8',
+      washer_mode: 'clean',
+      dryer_mode: '19',
+      detergent: 'ariel',
+      bleach: 'colorsafe',
+      fabric_conditioner: 'downy',
+      is_press: false,
+      is_fold: false
+    },
+    loading: false,
+    errors: []
+  };
+
+  $scope.total = JobFactory.compute($scope.form.data);
+
+  $scope.$watch('form.data', function(data, previous) {
+    $scope.total = JobFactory.compute(data);
+  }, true);
+
+  $scope.submit = function() {
+    if ( $scope.form.loading ) {
+      return;
+    }
+
+    $scope.form.loading = true;
+    $scope.form.errors = [];
+    $ionicLoading.show();
+
+    return $http.post(':app/jobs/walk-in', $scope.form.data)
+      .then(function(res) {
+        $ionicLoading.hide();
+        $scope.form.loading = false;
+        $storage.set('id', res.data.data.id);
+        $ionicHistory.nextViewOptions({ disableBack: true });
+        $state.go('menu.queue');
+      })
+      .catch(function(res) {
+        $ionicLoading.hide();
+        $scope.form.errors = APIFactory.transform(res.data);
+        $scope.form.loading = false;
+      });
+  }
 }])
 
 .controller('machinesCtrl', ['$scope', '$http', '$q', '$ionicLoading', '$ionicPopup',
@@ -204,6 +257,22 @@ function($scope, $http, $q, $ionicLoading, $ionicPopup) {
           template: 'An error occured while trying to connect to the server. Please try again!'
         });
       });
+  }
+}])
+
+.controller('queueOptionsCtrl', ['$scope', '$ionicPopup',
+function($scope, $ionicPopup) {
+  $scope.help = function(evt) {
+    evt.preventDefault();
+
+    $ionicPopup.alert({
+      title: 'Queue Options',
+
+      template: [
+        '<strong>Walk-in Queue</strong> gives you a queue number for a laundry job for same day; ',
+        'while <strong>Reservation</strong> allows you to reserve a slot for any day in the week'
+      ].join(' ')
+    });
   }
 }])
 
