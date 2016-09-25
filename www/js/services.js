@@ -27,6 +27,41 @@ angular.module('app.services', [])
 	return pusher;
 }])
 
+.factory('$paypal', ['$q', function($q) {
+  var settings = {
+    sandbox: 'AdYzcfxqyh16DIIJjttzM-9I7Stbo4iuwLjoS9SaT0AAdmxmqgTWkLzIHl1tuH-WLGHRvyF3hB5fdFgjs',
+    production: '',
+    env: 'PayPalEnvironmentNoNetwork',
+    name: 'Quicklean',
+    privacy: 'http://youjizz.com',
+    eula: 'http://youjizz.com'
+  };
+
+  return {
+    checkout: function(total, name) {
+      var deferred = $q.defer();
+
+      PayPalMobile.init({
+        PayPalEnvironmentProduction: settings.production,
+        PayPalEnvironmentSandbox: settings.sandbox
+      }, function() {
+        var configuration = new PayPalConfiguration({
+          merchantName: settings.name,
+          merchantPrivacyPolicyURL: settings.privacy,
+          merchantUserAgreementURL: settings.eula,
+        });
+
+        PayPalMobile.prepareToRender(settings.env, configuration, function() {
+          var payment = new PayPalPayment(String(total), "PHP", name, "Sale");
+          PayPalMobile.renderSinglePaymentUI(payment, deferred.resolve, deferred.reject);
+        });
+      });
+
+      return deferred.promise;
+    }
+  };
+}])
+
 .factory('JobFactory', [function() {
   return {
     /**

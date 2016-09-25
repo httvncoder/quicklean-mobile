@@ -63,6 +63,29 @@ angular.module('app.routes', [])
     }
   })
 
+   .state('menu.payment', {
+    url: '/payment',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/payment.html',
+        controller: 'paymentCtrl'
+      }
+    },
+    resolve: {
+      // This page isn't accessible anywhere outside the reservation
+      // (by redirecting the sure to this state)
+      job: ['$http', '$storage', function($http, $storage) {
+        var id = $storage.get('id');
+
+        // @TODO: Error handling (0 & 500)
+        return $http.get(':app/jobs/' + id)
+          .then(function(res) {
+            return res.data.data;
+          });
+      }]
+    }
+  })
+
   .state('menu.walkin', {
     url: '/page5',
     views: {
