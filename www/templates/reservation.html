@@ -158,9 +158,9 @@
         </select>
       </div>
 
-      <ion-toggle toggle-class="toggle-positive" id="reservation-toggle1" name="is_press" ng-model="form.data.is_press">Pressed</ion-toggle>
+      <ion-toggle toggle-class="toggle-positive" id="reservation-toggle1" name="is_press" ng-model="form.data.is_press" ng-if="form.data.service_type !== 'self'">Pressed</ion-toggle>
 
-      <ion-toggle toggle-class="toggle-positive" id="reservation-toggle3" name="is_fold" ng-model="form.data.is_fold">Folded</ion-toggle>
+      <ion-toggle toggle-class="toggle-positive" id="reservation-toggle3" name="is_fold" ng-model="form.data.is_fold" ng-if="form.data.service_type !== 'self'">Folded</ion-toggle>
 
       <div class="item item-input">
         <span class="input-label"><label for="reserve_at">Reservation Date</label></span>

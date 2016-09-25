@@ -245,6 +245,13 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
     $scope.total = JobFactory.compute(data);
   }, true);
 
+  $scope.$watch('form.data.service_type', function(data, previous) {
+    if ( data === 'self' ) {
+      $scope.form.data.is_press = false;
+      $scope.form.data.is_fold = false;
+    }
+  });
+
   $scope.submit = function() {
     if ( $scope.form.loading ) {
       return;
@@ -357,6 +364,13 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
   $scope.$watch('form.data', function(data, previous) {
     $scope.total = JobFactory.compute(data);
   }, true);
+
+  $scope.$watch('form.data.service_type', function(data, previous) {
+    if ( data === 'self' ) {
+      $scope.form.data.is_press = false;
+      $scope.form.data.is_fold = false;
+    }
+  });
 
   $scope.submit = function() {
     if ( $scope.form.loading ) {
