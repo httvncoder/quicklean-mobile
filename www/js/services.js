@@ -154,4 +154,11 @@ angular.module('app.services', [])
         });
     }
   };
+}])
+
+.factory('AuthFactory', ['$http', '$storage', function($http, $storage) {
+  return {
+    data: {},
+    token: null
+  };
 }]);

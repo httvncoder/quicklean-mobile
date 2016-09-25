@@ -9844,6 +9844,9 @@ a.button {
 .u-spacer {
   margin-bottom: 15px; }
 
+.u-spacer-large {
+  margin-bottom: 30px; }
+
 .u-no-spacer {
   margin: 0; }
 
@@ -9858,6 +9861,9 @@ a.button {
 
 .u-text-icon-right {
   margin-left: 5px; }
+
+.u-text-light {
+  font-weight: 300; }
 
 .u-animate-spin {
   animation-name: spin;

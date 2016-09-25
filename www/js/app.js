@@ -37,11 +37,27 @@ angular.module('app', [
   $numeraljsConfigProvider.setFormat('currency', '0,0.00');
 })
 .config(function($httpProvider) {
-  $httpProvider.interceptors.push(function($q) {
+  $httpProvider.interceptors.push(function() {
     return {
       request: function(config) {
         if ( /\:app/.test(config.url) ) {
           config.url = config.url.replace(':app/', 'http://quicklean.symvel.com/api/');
+        } else if ( /\:api/.test(config.url) ) {
+          config.url = config.url.replace(':api/', 'http://quicklean.symvel.com/');
+        }
+
+        return config;
+      }
+    }
+  });
+
+  $httpProvider.interceptors.push(function($storage) {
+    return {
+      request: function(config) {
+        var token = $storage.get('auth');
+
+        if ( token ) {
+          config.headers.Authorization = 'Bearer ' + token;
         }
 
         return config;

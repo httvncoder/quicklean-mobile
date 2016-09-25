@@ -1,5 +1,111 @@
 angular.module('app.controllers', [])
 
+.controller('loginCtrl', ['$scope', '$http', '$state', '$ionicHistory', '$storage', 'AuthFactory',
+function ($scope, $http, $state, $ionicHistory, $storage, AuthFactory) {
+  $scope.form = {
+    username: '',
+    password: ''
+  };
+
+  $scope.loading = false;
+  $scope.message = '';
+
+  $scope.login = function login() {
+    if ( $scope.loading ) {
+      return;
+    }
+
+    $scope.loading = true;
+    $scope.message = '';
+
+    var payload = angular.extend({}, $scope.form, {
+      grant_type: 'password',
+      client_id: '3',
+      client_secret: 'jJOPMnYE9L9E1lbkKd5mDwxTt4XQsxLTDOXQPbwQ',
+      scope: ''
+    });
+
+    return $http.post(':api/oauth/token', payload)
+      .then(function(res) {
+        AuthFactory.token = res.data.access_token;
+        $storage.set('auth', AuthFactory.token);
+        return $http.get(':app/me');
+      })
+      .then(function(res) {
+        AuthFactory.data = res.data.data;
+        $scope.loading = false;
+
+        $ionicHistory.nextViewOptions({ disableBack: true });
+        $state.go('menu.queue');
+      })
+      .catch(function(res) {
+        $scope.message = res.status === 0 || res.status === 500
+          ? 'There seems to be a problem connecting to the server.'
+          : 'Invalid username/password combination';
+
+        $scope.loading = false;
+      });
+  }
+}])
+
+
+.controller('registrationCtrl', [
+  '$scope',
+  '$http',
+  '$state',
+  '$ionicHistory',
+  '$ionicPopup',
+  '$storage',
+  'APIFactory',
+function ($scope, $http, $state, $ionicHistory, $ionicPopup, $storage, APIFactory) {
+  $scope.form = {
+    email: '',
+    name: '',
+    password: ''
+  };
+
+  $scope.loading = false;
+  $scope.errors = {};
+  $scope.message = '';
+
+  $scope.register = function register() {
+    if ( $scope.loading ) {
+      return;
+    }
+
+    $scope.loading = true;
+    $scope.errors = {};
+    $scope.message = '';
+
+    return $http.post(':app/users', $scope.form)
+      .then(function(res) {
+        $scope.loading = false;
+
+        $ionicPopup.show({
+          title: 'Nice!',
+          template: 'You may now process reservations and queues. Enjoy!',
+          buttons: [{
+            text: 'Login',
+            type: 'button-positive',
+            onTap: function() {
+              $ionicHistory.nextViewOptions({ disableBack: true });
+              $state.go('login');
+            }
+          }]
+        });
+      })
+      .catch(function(res) {
+        if ( res.status === 0 || res.status === 500 ) {
+          $scope.message = 'Oops, there seems to be an issue with the servers.';
+        } else {
+          $scope.errors = APIFactory.transform(res.data);
+        }
+
+        $scope.loading = false;
+      });
+  }
+}])
+
 .controller('queueCtrl', [
 	'$scope',
 	'$stateParams',
@@ -149,7 +255,7 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
 
     var payload = angular.extend($scope.form.data, { status: 'reserved' });
 
-		return $http.post(':app/jobs', payload)
+		return $http.post(':app/me/jobs', payload)
 			.then(function(res) {
 				$ionicLoading.hide();
 				$scope.form.loading = false;
@@ -215,7 +321,7 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
     $scope.form.errors = [];
     $ionicLoading.show();
 
-    return $http.post(':app/jobs/walk-in', $scope.form.data)
+    return $http.post(':app/me/jobs/walk-in', $scope.form.data)
       .then(function(res) {
         $ionicLoading.hide();
         $scope.form.loading = false;

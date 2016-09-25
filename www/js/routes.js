@@ -163,11 +163,72 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('logout', {
+    url: '/logout',
+
+    controller: ['$http', '$storage', '$state', '$ionicHistory', 'AuthFactory', function($http, $storage, $state, $ionicHistory, AuthFactory) {
+      AuthFactory.data = {};
+      AuthFactory.token = null;
+      $storage.destroy('auth');
+
+      $ionicHistory.nextViewOptions({ disableBack: true });
+      $state.go('menu.login');
+    }]
+  })
+
+  .state('login', {
+    url: '/page8',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl',
+    parent: 'app'
+  })
+
+  .state('registration', {
+    url: '/register',
+    templateUrl: 'templates/registration.html',
+    controller: 'registrationCtrl',
+    parent: 'app'
+  })
+
   .state('menu', {
     url: '/side-menu21',
     templateUrl: 'templates/menu.html',
-    abstract: true
+    abstract: true,
+    parent: 'app',
+    controller: ['$state', 'AuthFactory', function($state, AuthFactory) {
+      if ( AuthFactory.token == null ) {
+        $state.go('login');
+      }
+    }]
   })
+
+  .state('app', {
+    abstract: true,
+    template: '<ion-nav-view></ion-nav-view>',
+
+    resolve: {
+      auth: ['$http', '$storage', 'AuthFactory', function($http, $storage, AuthFactory) {
+        var token = $storage.get('auth');
+
+        if ( !token ) {
+          return;
+        }
+
+        return $http.get(':app/me')
+          .then(function(res) {
+            AuthFactory.token = token;
+            AuthFactory.data = res.data.data;
+            return AuthFactory;
+          })
+          .catch(function(res) {
+            // Do nothing
+            // @TODO: Handle 401 (Invalid)
+            console.log(res);
+            return AuthFactory;
+          });
+      }]
+    }
+  });
 
   $urlRouterProvider.otherwise('/side-menu21/page1')
 });

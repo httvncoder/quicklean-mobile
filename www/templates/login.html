@@ -1,0 +1,33 @@
+<ion-view title="Login" id="page8" hide-nav-bar="true">
+  <ion-content padding="true" class="has-header container">
+    <div ng-if="message.length" class="pull-note pull-note--assertive u-spacer">
+      <i class="icon ion-android-alert pull-note__icon"></i>
+
+      <ul class="pull-note__text">
+        {{ message }}
+      </ul>
+    </div>
+
+    <div class="list">
+      <div class="item item-input">
+        <label for="username" class="input-label">
+          Username
+        </label>
+
+        <input type="text" placeholder="johndoe" ng-model="form.username" id="username" name="username">
+      </div>
+
+      <div class="item item-input">
+        <label for="password" class="input-label">
+          Password
+        </label>
+
+        <input type="password" placeholder="*****" ng-model="form.password" id="password" name="password">
+      </div>
+    </div>
+
+    <button ng-click="login()" class="button button-positive button-block" ng-disabled="loading">
+      Login
+    </button>
+  </ion-content>
+</ion-view>
