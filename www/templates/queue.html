@@ -69,7 +69,13 @@
 
         <div>
           <button ng-click="cancel()" class="button button-assertive  button-block">
-            Cancel Reservation
+            <span ng-if="job.reserve_at != null">
+              Cancel Reservation
+            </span>
+
+            <span ng-if="job.reserve_at == null">
+              Cancel Queue
+            </span>
           </button>
         </div>
       </div>
@@ -100,8 +106,8 @@
         </div>
 
         <div>
-          <button ng-click="cancel()" class="button button-assertive  button-block">
-            Cancel Reservation
+          <button ng-click="done('washer')" class="button button-balanced button-block">
+            Set as Done
           </button>
         </div>
       </div>
@@ -132,8 +138,8 @@
         </div>
 
         <div>
-          <button ng-click="cancel()" class="button button-assertive  button-block">
-            Cancel Reservation
+          <button ng-click="done('dryer')" class="button button-balanced button-block">
+            Set as Done
           </button>
         </div>
       </div>

@@ -145,6 +145,9 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
     'Paid': 6
   };
 
+  $scope.cancelling = false;
+  $scope.completing = false;
+
   $scope.info = null;
 
   if ( id ) {
@@ -155,8 +158,6 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
       $scope.info = modal;
     });
   }
-
-  $scope.cancelling = false;
 
   $scope.cancel = function() {
     if ( $scope.cancelling ) {
@@ -187,6 +188,26 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
   $scope.new = function() {
     $storage.destroy('id');
     $state.go('menu.queue-options');
+  }
+
+  $scope.done = function(type) {
+    if ( $scope.completing ) {
+      return;
+    }
+
+    $scope.completing = true;
+
+    return $http.post(':app/jobs/done-' + type)
+      .then(function(job) {
+        $scope.job = job;
+        $scope.completing = false;
+      })
+      .catch(function() {
+        $ionicPopup.alert({
+          title: 'Server Error',
+          template: 'An error occured while trying to connect to the server. Please try again!'
+        });
+      });
   }
 
   function connect() {
