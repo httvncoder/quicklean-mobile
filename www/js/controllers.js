@@ -65,7 +65,7 @@ function ($scope, $http, $state, $ionicHistory, $ionicPopup, $storage, APIFactor
   };
 
   $scope.loading = false;
-  $scope.errors = {};
+  $scope.errors = [];
   $scope.message = '';
 
   $scope.register = function register() {
@@ -74,7 +74,7 @@ function ($scope, $http, $state, $ionicHistory, $ionicPopup, $storage, APIFactor
     }
 
     $scope.loading = true;
-    $scope.errors = {};
+    $scope.errors = [];
     $scope.message = '';
 
     return $http.post(':app/users', $scope.form)
