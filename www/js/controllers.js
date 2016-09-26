@@ -197,7 +197,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
     $scope.completing = true;
 
-    return $http.post(':app/jobs/done-' + type)
+    return $http.put(':app/jobs/done-' + type + '/' + $scope.job.id)
       .then(function(job) {
         $scope.job = job;
         $scope.completing = false;
