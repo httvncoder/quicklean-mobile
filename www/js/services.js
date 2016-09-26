@@ -33,8 +33,8 @@ angular.module('app.services', [])
     production: '',
     env: 'PayPalEnvironmentNoNetwork',
     name: 'Quicklean',
-    privacy: 'http://youjizz.com',
-    eula: 'http://youjizz.com'
+    privacy: 'http://quicklean.com.ph',
+    eula: 'http://quicklean.com.ph'
   };
 
   return {
