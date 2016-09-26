@@ -64,4 +64,16 @@ angular.module('app', [
       }
     }
   });
+
+  $httpProvider.interceptors.push(function($storage) {
+    return {
+      responseError: function(response) {
+        if ( response.status === 401 && response.config.method === 'GET' ) {
+          $storage.destroy('auth');
+        }
+
+        return response;
+      }
+    }
+  });
 })
