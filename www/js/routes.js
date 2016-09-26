@@ -195,7 +195,7 @@ angular.module('app.routes', [])
       $storage.destroy('auth');
 
       $ionicHistory.nextViewOptions({ disableBack: true });
-      $state.go('menu.login');
+      $state.go('login');
     }]
   })
 

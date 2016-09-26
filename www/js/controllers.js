@@ -104,6 +104,10 @@ function ($scope, $http, $state, $ionicHistory, $ionicPopup, $storage, APIFactor
         $scope.loading = false;
       });
   }
+
+  $scope.back = function() {
+    $state.go('login');
+  }
 }])
 
 .controller('queueCtrl', [

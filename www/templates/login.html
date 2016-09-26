@@ -1,4 +1,4 @@
-<ion-view title="Login" id="page8" hide-nav-bar="true">
+<ion-view title="Login" id="page8">
   <ion-content padding="true" class="has-header container">
     <div ng-if="message.length" class="pull-note pull-note--assertive u-spacer">
       <i class="icon ion-android-alert pull-note__icon"></i>
@@ -26,8 +26,17 @@
       </div>
     </div>
 
-    <button ng-click="login()" class="button button-positive button-block" ng-disabled="loading">
-      Login
-    </button>
+    <div class="u-spacer">
+      <button ng-click="login()" class="button button-positive button-block" ng-disabled="loading">
+        Login
+      </button>
+    </div>
+
+    <a ui-sref="registration">
+      I would like to register instead.
+    </a>
   </ion-content>
+
+  <ion-nav-bar class="bar-purple">
+  </ion-nav-bar>
 </ion-view>
