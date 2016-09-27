@@ -20,8 +20,10 @@ function ($scope, $http, $state, $ionicHistory, $storage, AuthFactory) {
 
     var payload = angular.extend({}, $scope.form, {
       grant_type: 'password',
-      client_id: '3',
-      client_secret: 'jJOPMnYE9L9E1lbkKd5mDwxTt4XQsxLTDOXQPbwQ',
+      // client_id: '3',
+      // client_secret: 'jJOPMnYE9L9E1lbkKd5mDwxTt4XQsxLTDOXQPbwQ',
+      client_id: '2',
+      client_secret: 'NyBKE8NMXH8NyBLv2D7hDb5Wk0nTioJy8bMm2uXs',
       scope: ''
     });
 
@@ -120,11 +122,12 @@ function ($scope, $http, $state, $ionicHistory, $ionicPopup, $storage, APIFactor
   '$ionicPopup',
   '$ionicLoading',
   '$ionicModal',
+  'JobFactory',
   'job',
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $ionicLoading, $ionicModal, job) {
+function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $ionicLoading, $ionicModal, JobFactory, job) {
   var id = $storage.get('id');
 
   connect();
@@ -149,6 +152,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
   $scope.completing = false;
 
   $scope.info = null;
+  $scope.receipt = null;
 
   if ( id ) {
     $ionicModal.fromTemplateUrl('templates/queue.info-modal.html', {
@@ -157,6 +161,17 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
     }).then(function(modal) {
       $scope.info = modal;
     });
+
+    $ionicModal.fromTemplateUrl('templates/queue.receipt-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-right-left'
+    }).then(function(modal) {
+      $scope.receipt = modal;
+    });
+  }
+
+  $scope.price = function(factor) {
+    return JobFactory.price($scope.job, factor);
   }
 
   $scope.cancel = function() {
@@ -304,7 +319,30 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
   }
 }])
 
-.controller('paymentCtrl', ['$scope', '$http', '$state', '$ionicPopup', '$ionicHistory', '$paypal', 'job', function($scope, $http, $state, $ionicPopup, $ionicHistory, $paypal, job) {
+.controller('paymentCtrl', [
+  '$scope',
+  '$http',
+  '$state',
+  '$ionicPopup',
+  '$ionicHistory',
+  '$ionicModal',
+  '$paypal',
+  'JobFactory',
+  'job',
+function($scope, $http, $state, $ionicPopup, $ionicHistory, $ionicModal, $paypal, JobFactory, job) {
+  $scope.job = job;
+  $scope.receipt = null;
+
+  $ionicModal.fromTemplateUrl('templates/payment.receipt-modal.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.receipt = modal;
+  });
+
+  $scope.price = function(factor) {
+    return JobFactory.price($scope.job, factor);
+  }
+
   $scope.checkout = function() {
     return $paypal.checkout(job.total_bill, 'Quicklean Laundry')
       .then(function() {

@@ -6,8 +6,16 @@
       </button>
     </div>
 
-    <button ng-click="proceed()" class="button button-block button-dark">
-      Over-The-Counter Payment
-    </button>
+    <div class="u-spacer">
+      <button ng-click="proceed()" class="button button-block button-dark">
+        Over-The-Counter Payment
+      </button>
+    </div>
   </ion-content>
+
+  <div class="bar bar-footer bar-stable">
+    <button class="button button-clear button-block" ng-click="receipt.show()" style="margin: 0;">
+      View Receipt
+    </button>
+  </ion-view>
 </ion-view>

@@ -1,0 +1,73 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Reservation Receipt</h1>
+    <button class="button button-icon ion-chevron-right pull-right" ng-click="receipt.hide()"></button>
+  </ion-header-bar>
+
+  <ion-content padding="true">
+    <div class="list card">
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Washer Mode</div>
+          <div class="u-pull-right">{{ price('washer') | numeraljs: 'currency' }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Dryer Mode</div>
+          <div class="u-pull-right">{{ price('dryer') | numeraljs: 'currency' }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Detergent</div>
+          <div class="u-pull-right">{{ price('detergent') | numeraljs: 'currency' }}</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Bleach</div>
+          <div class="u-pull-right">{{ price('bleach') | numeraljs: 'currency' }}</div>
+        </div>
+      </div>
+
+      <div class="item" ng-if="job.fabric_conditioner === 'Downy'">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Fabric Conditioner</div>
+          <div class="u-pull-right">{{ price('conditioner') | numeraljs: 'currency' }}</div>
+        </div>
+      </div>
+
+      <!-- <div class="item" ng-if="job.service_type === 'employee' && job.is_fold">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Pressed</div>
+          <div class="u-pull-right">
+            <span ng-if="job.is_press"><i class="icon ion-checkmark balanced"></i></span>
+            <span ng-if="!job.is_press"><i class="icon ion-close-round assertive"></i></span>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="item" ng-if="job.service_type === 'Employee' && job.is_fold">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Folded</div>
+          <div class="u-pull-right">
+            {{ price('fold') | numeraljs: 'currency' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Total Bill</div>
+          <div class="u-pull-right">
+            PHP {{ job.total_bill | numeraljs: 'currency' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

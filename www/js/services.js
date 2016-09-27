@@ -63,6 +63,60 @@ angular.module('app.services', [])
 }])
 
 .factory('JobFactory', [function() {
+  var pricing = {
+    fold: {
+      '8': 40,
+      '16': 80
+    },
+
+    detergent: {
+      ariel: 12,
+      tide: 10,
+      pride: 6
+    },
+
+    conditioner: 10,
+
+    bleach: {
+      colorsafe: 5,
+      original: 12
+    },
+
+    washer: {
+      clean: {
+        '8': 70,
+        '16': 140
+      },
+
+      cleaner: {
+        '8': 80,
+        '16': 160
+      },
+
+      cleanest: {
+        '8': 90,
+        '16': 180
+      }
+    },
+
+    dryer: {
+      '19': {
+        '8': 70,
+        '16': 140
+      },
+
+      '24': {
+        '8': 80,
+        '16': 160
+      },
+
+      '29': {
+        '8': 90,
+        '16': 180
+      },
+    }
+  };
+
   return {
     /**
      * Compute total bill for a job
@@ -71,73 +125,65 @@ angular.module('app.services', [])
      * @return {number}
      */
     compute: function(job) {
-      var total = 0;
+      var price = this.price;
 
-      var detergentQuantity = parseInt(job.detergent_qty, 10);
-      var conditionerQuantity = parseInt(job.fabric_conditioner_qty, 10);
-      var bleachQuantity = parseInt(job.bleach_qty, 10);
+      return [
+        price(job, 'fold'),
+        price(job, 'detergent'),
+        price(job, 'conditioner'),
+        price(job, 'bleach'),
+        price(job, 'washer'),
+        price(job, 'dryer')
+      ].reduce(function(previous, current) {
+        return previous + current;
+      }, 0);
+    },
 
-      if ( job.is_fold ) {
-        total += job.kilogram == 8 ? 35 : 80;
+    /**
+     * Get the pricing of a factor
+     *
+     * @param object job
+     * @param string factor
+     * @return number
+     */
+    price: function(job, factor) {
+      var wt = /kg$/.test(job.kilogram)
+        ? job.kilogram.split(' ')[0]
+        : job.kilogram;
+
+      switch(factor) {
+        case 'fold':
+          if ( job.service_type.toLowerCase() === 'employee' && job.is_fold ) {
+            return pricing.fold[wt];
+          }
+          break;
+
+        case 'detergent':
+          var qty = parseInt(job.detergent_qty, 10);
+          return pricing.detergent[job.detergent.toLowerCase()] * qty;
+
+        case 'conditioner':
+          if ( job.fabric_conditioner.toLowerCase() === 'downy' ) {
+            var qty = parseInt(job.fabric_conditioner_qty, 10);
+            return pricing.conditioner * qty;
+          }
+          break;
+
+        case 'bleach':
+          var qty = parseInt(job.bleach_qty, 10);
+          return pricing.bleach[job.bleach.toLowerCase()] * qty;
+
+        case 'washer':
+          return pricing.washer[job.washer_mode.toLowerCase()][wt];
+
+        case 'dryer':
+          var dryer = /mins$/.test(job.dryer_mode)
+            ? job.dryer_mode.split(' ')[0]
+            : job.dryer_mode;
+          return pricing.dryer[dryer.toLowerCase()][wt];
       }
 
-      switch ( job.detergent ) {
-        case 'ariel':
-          total += 12 * detergentQuantity;
-          break;
-
-        case 'tide':
-          total += 10 * detergentQuantity;
-          break;
-
-        case 'pride':
-          total += 6 * detergentQuantity;
-          break;
-      }
-
-      if ( job.fabric_conditioner === 'downy' ) {
-        total += 10 * conditionerQuantity;
-      }
-
-      switch ( job.bleach ) {
-        case 'colorsafe':
-          total += 5 * bleachQuantity;
-          break;
-
-        case 'original':
-          total += 12 * bleachQuantity;
-          break;
-      }
-
-      switch ( job.washer_mode ) {
-        case 'clean':
-          total += job.kilogram == 8 ? 70 : 140;
-          break;
-
-        case 'cleaner':
-          total += job.kilogram == 8 ? 80 : 160;
-          break;
-
-        case 'cleanest':
-          total += job.kilogram == 8 ? 90 : 180;
-          break;
-      }
-
-      switch ( job.dryer_mode ) {
-        case '19':
-          total += job.kilogram == 8 ? 70 : 140;
-          break;
-
-        case '24':
-          total += job.kilogram == 8 ? 80 : 160;
-          break;
-
-        case '29':
-          total += job.kilogram == 8 ? 90 : 180;
-          break;
-      }
-
-      return total;
+      return 0;
     }
   };
 }])
