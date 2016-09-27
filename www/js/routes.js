@@ -212,7 +212,7 @@ angular.module('app.routes', [])
         return $http.get(':app/me')
           .then(function(res) {
             AuthFactory.token = token;
-            AuthFactory.data = res.data.data;
+            AuthFactory.data = res.data;
             return AuthFactory;
           })
           .catch(function(res) {

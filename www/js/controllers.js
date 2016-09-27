@@ -264,14 +264,15 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
   '$ionicLoading',
   'JobFactory',
   'APIFactory',
+  'AuthFactory',
   '$paypal',
  // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading, JobFactory, APIFactory, $paypal) {
+function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading, JobFactory, APIFactory, AuthFactory, $paypal) {
   $scope.form = {
     data: {
-      name: '',
+      name: AuthFactory.data.name,
       phone: '',
       service_type: 'self',
       kilogram: '8',
@@ -422,13 +423,15 @@ function($scope, $http, $state, $ionicPopup, $ionicHistory, $ionicModal, $paypal
   '$ionicLoading',
   'JobFactory',
   'APIFactory',
+  'AuthFactory',
  // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading, JobFactory, APIFactory) {
+function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading, JobFactory, APIFactory, AuthFactory) {
+  console.log(AuthFactory);
   $scope.form = {
     data: {
-      name: '',
+      name: AuthFactory.data.name,
       phone: '',
       service_type: 'self',
       kilogram: '8',
