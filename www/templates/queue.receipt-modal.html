@@ -20,21 +20,21 @@
         </div>
       </div>
 
-      <div class="item">
+      <div class="item" ng-if="!own('detergent')">
         <div class="u-clearfix">
           <div class="u-pull-left">Detergent</div>
           <div class="u-pull-right">{{ price('detergent') | numeraljs: 'currency' }}</div>
         </div>
       </div>
 
-      <div class="item">
+      <div class="item" ng-if="!own('bleach')">
         <div class="u-clearfix">
           <div class="u-pull-left">Bleach</div>
           <div class="u-pull-right">{{ price('bleach') | numeraljs: 'currency' }}</div>
         </div>
       </div>
 
-      <div class="item" ng-if="job.fabric_conditioner === 'Downy'">
+      <div class="item" ng-if="!own('conditioner')">
         <div class="u-clearfix">
           <div class="u-pull-left">Fabric Conditioner</div>
           <div class="u-pull-right">{{ price('conditioner') | numeraljs: 'currency' }}</div>

@@ -29,7 +29,39 @@ angular.module('app.routes', [])
               }
             });
         }
-      }]
+      }],
+
+      jobs: ['$storage', '$http', function($storage, $http) {
+        return $http.get(':app/me/jobs/')
+          .then(function(res) {
+            return res.data.data;
+          })
+          .catch(function(res) {
+            // Handle error
+          });
+      }],
+    }
+  })
+
+  $stateProvider
+  .state('menu.job', {
+    url: '/jobs/:id',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/job.html',
+        controller: 'jobCtrl'
+      }
+    },
+    resolve: {
+      job: ['$http', '$stateParams', function($http, $stateParams) {
+        return $http.get(':app/jobs/' + $stateParams.id)
+          .then(function(res) {
+            return res.data.data;
+          })
+          .catch(function(res) {
+            // Handle error
+          });
+      }],
     }
   })
 
@@ -40,26 +72,6 @@ angular.module('app.routes', [])
         templateUrl: 'templates/reservation.html',
         controller: 'reservationCtrl'
       }
-    },
-    resolve: {
-      // Check for existing jobs. If the user has one,
-      // redirect him back to the queue page.
-      existing: ['$storage', '$state', '$ionicHistory', '$ionicPopup', function($storage, $state, $ionicHistory, $ionicPopup) {
-        if ( $storage.get('id') ) {
-          var popup = $ionicPopup.show({
-            title: 'Oops!',
-            template: 'It appears that you still have an existing reservation. You can only have one at a time.',
-            buttons: [{
-              text: 'OK',
-              type: 'button-positive',
-              onTap: function() {
-                $ionicHistory.nextViewOptions({ disableBack: true });
-                $state.go('menu.queue');
-              }
-            }]
-          });
-        }
-      }]
     }
   })
 
@@ -93,26 +105,6 @@ angular.module('app.routes', [])
         templateUrl: 'templates/walkin.html',
         controller: 'walkinCtrl'
       }
-    },
-    resolve: {
-      // Check for existing jobs. If the user has one,
-      // redirect him back to the queue page.
-      existing: ['$storage', '$state', '$ionicHistory', '$ionicPopup', function($storage, $state, $ionicHistory, $ionicPopup) {
-        if ( $storage.get('id') ) {
-          $ionicPopup.show({
-            title: 'Oops!',
-            template: 'It appears that you still have an existing reservation. You can only have one at a time.',
-            buttons: [{
-              text: 'OK',
-              type: 'button-positive',
-              onTap: function() {
-                $ionicHistory.nextViewOptions({ disableBack: true });
-                $state.go('menu.queue');
-              }
-            }]
-          });
-        }
-      }]
     }
   })
 
@@ -123,26 +115,6 @@ angular.module('app.routes', [])
         templateUrl: 'templates/queue-options.html',
         controller: 'queueOptionsCtrl'
       }
-    },
-    resolve: {
-      // Check for existing jobs. If the user has one,
-      // redirect him back to the queue page.
-      existing: ['$storage', '$state', '$ionicHistory', '$ionicPopup', function($storage, $state, $ionicHistory, $ionicPopup) {
-        if ( $storage.get('id') ) {
-          $ionicPopup.show({
-            title: 'Oops!',
-            template: 'It appears that you still have an existing reservation. You can only have one at a time.',
-            buttons: [{
-              text: 'OK',
-              type: 'button-positive',
-              onTap: function() {
-                $ionicHistory.nextViewOptions({ disableBack: true });
-                $state.go('menu.queue');
-              }
-            }]
-          });
-        }
-      }]
     }
   })
 

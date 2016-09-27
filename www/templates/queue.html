@@ -1,252 +1,56 @@
 <ion-view title="Queue" id="page1">
-  <ion-nav-buttons side="secondary">
-    <button ng-if="job.status.length" class="button button-icon ion-information-circled" ng-click="info.show()">
-    </button>
-  </ion-nav-buttons>
+  <ion-content padding="true" class="has-header">
+    <div class="list card" ng-if="jobs.length">
+      <a ui-sref="menu.job({ id: job.id })" ng-repeat="job in jobs" class="item item-icon-left item-icon-right">
+        <i class="icon ion-calendar" ng-if="job.reserve_at != null"></i>
+        <i class="icon ion-pound" ng-if="job.reserve_at == null"></i>
+        <small>{{ job.id }}</small>
+        &nbsp;&nbsp;
+        <span ng-if="job.status === 'Reserved'" class="u-text-grey">
+          For Approval
+        </span>
 
-  <ion-content padding="true" class="has-header container">
-    <div>
-      <div ng-if="!job.status.length">
-        <div class="u-spacer">
-          <div class="circle calm-bg u-block-center">
-            <i class="icon ion-happy-outline"></i>
-          </div>
-        </div>
-
-        <h5 class="calm">Nice!</h5>
-
-        <p class="u-text-grey u-spacer">
-          Looks like your clothes are all clean.<br />Let us know when you do!
-        </p>
-
-        <div>
-          <button ng-click="new()" class="button button-positive button-block">
-            Make New Reservation
-          </button>
-        </div>
-      </div>
-
-      <div ng-if="job.status === 'Reserved'">
-        <div class="u-spacer">
-          <div class="circle positive-bg u-block-center">
-            <i class="icon ion-ios-list-outline"></i>
-          </div>
-        </div>
-
-        <h5 class="positive">For Approval</h5>
-
-        <p class="u-text-grey u-spacer">
-          Your reservation for <strong class="dark">{{ job.reserve_at | timestamp | date: 'MMMM d, y h:mm a' }}</strong> is still waiting for approval.
-        </p>
-
-        <div>
-          <button ng-click="cancel()" class="button button-assertive  button-block">
-            Cancel Reservation
-          </button>
-        </div>
-      </div>
-
-      <div ng-if="job.status === 'Approved'">
-        <div class="u-spacer">
-          <div class="circle positive-bg u-block-center">
-            <i class="icon ion-load-c u-animate-spin"></i>
-          </div>
-        </div>
-
-        <h5 class="positive">
+        <span ng-if="job.status === 'Approved'" class="positive">
           Approved
-        </h5>
+        </span>
 
-        <p class="u-text-grey u-spacer">
-          <span ng-if="job.reserve_at != null">
-            Your reservation for <strong class="dark">{{ job.reserve_at | timestamp | date: 'MMMM d, y h:mm a' }}</strong> has already been approved.
-          </span>
+        <span ng-if="job.status === 'Pending washer'" class="positive">
+          Washing On-going {{ job.queue.washer }}
+        </span>
 
-          <span ng-if="job.reserve_at == null">
-            Please wait while the clerk assigns you to the most available machine.
-          </span>
-        </p>
+        <span ng-if="job.status === 'Pending dryer'" class="positive">
+          Drying On-going {{ job.queue.dryer }}
+        </span>
 
-        <div>
-          <button ng-click="cancel()" class="button button-assertive  button-block">
-            <span ng-if="job.reserve_at != null">
-              Cancel Reservation
-            </span>
-
-            <span ng-if="job.reserve_at == null">
-              Cancel Queue
-            </span>
-          </button>
-        </div>
-      </div>
-
-      <div ng-if="job.status === 'Pending washer'">
-        <div class="u-spacer">
-          <div class="circle positive-bg u-block-center">
-            <i class="icon ion-load-c u-animate-spin"></i>
-          </div>
-        </div>
-
-        <h5 class="positive">
-          Washing on-going...
-        </h5>
-
-        <p class="u-text-grey u-spacer">
-          Your clothes are now being washed.
-        </p>
-
-        <div ng-if="job.queue" class="u-spacer">
-          <span class="label">
-            <h4 class="label-header">
-              #{{ job.queue }}
-            </h4>
-
-            <h6 class="label-name">{{ job.washer.name }}</h6>
-          </span>
-        </div>
-
-        <div>
-          <button ng-click="done('washer')" class="button button-balanced button-block">
-            Set as Done
-          </button>
-        </div>
-      </div>
-
-      <div ng-if="job.status === 'Pending dryer'">
-        <div class="u-spacer">
-          <div class="circle positive-bg u-block-center">
-            <i class="icon ion-load-c u-animate-spin"></i>
-          </div>
-        </div>
-
-        <h5 class="positive">
-          Dryer on-going...
-        </h5>
-
-        <p class="u-text-grey u-spacer">
-          Your clothes are now being dryed.
-        </p>
-
-        <div ng-if="job.queue" class="u-spacer">
-          <span class="label">
-            <h4 class="label-header">
-              #{{ job.queue }}
-            </h4>
-
-            <h6 class="label-name">{{ job.dryer.name }}</h6>
-          </span>
-        </div>
-
-        <div>
-          <button ng-click="done('dryer')" class="button button-balanced button-block">
-            Set as Done
-          </button>
-        </div>
-      </div>
-
-      <div ng-if="job.status === 'Declined'">
-        <div class="u-spacer">
-          <div class="circle assertive-bg u-block-center">
-            <i class="icon ion-thumbsdown"></i>
-          </div>
-        </div>
-
-        <h5 class="assertive">Declined</h5>
-
-        <p class="u-text-grey u-spacer">Sorry, we had to decline your reservation.</p>
-
-        <div>
-          <button ng-click="new()" class="button button-positive button-block">
-            Make Another Reservation
-          </button>
-        </div>
-      </div>
-
-      <div ng-if="job.status === 'Expired'">
-        <div class="u-spacer">
-          <div class="circle assertive-bg u-block-center">
-            <i class="icon ion-alert"></i>
-          </div>
-        </div>
-
-        <h5 class="assertive">Expired</h5>
-
-        <p class="u-text-grey u-spacer">
-          Oops! It looks like that your reservation wasn't approved in time.
-        </p>
-
-        <div>
-          <button ng-click="new()" class="button button-positive button-block">
-            Make Another Reservation
-          </button>
-        </div>
-      </div>
-
-      <div ng-if="job.status === 'Done'">
-        <div class="u-spacer">
-          <div class="circle positive-bg u-block-center">
-            <i class="icon ion-thumbsup"></i>
-          </div>
-        </div>
-
-        <h5 class="positive">
-          Almost there!
-        </h5>
-
-        <p class="u-text-grey u-no-spacer">
-          Your clothes are now good as new!
-          <br />Please pay an amount of <strong class="dark">PHP {{ job.total_bill | numeraljs: 'currency' }}</strong> to the counter.
-        </p>
-      </div>
-
-      <div ng-if="job.status === 'Paid'">
-        <div class="u-spacer">
-          <div class="circle balanced-bg u-block-center">
-            <i class="icon ion-thumbsup"></i>
-          </div>
-        </div>
-
-        <h5 class="balanced">
+        <span ng-if="job.status === 'Done'" class="balanced">
           Done
-        </h5>
+        </span>
 
-        <p class="u-text-grey u-spacer">
-          You're good to go!
-          <br />Don't forget to pick up your clothes.
-        </p>
+        <span ng-if="job.status === 'Paid'" class="balanced">
+          Paid
+        </span>
+        <i class="icon ion-chevron-right"></i>
+      </a>
+    </div>
 
-        <div>
-          <button ng-click="new()" class="button button-positive button-block">
-            Make Another Reservation
-          </button>
+    <div ng-if="!jobs.length">
+      <div class="u-spacer">
+        <div class="circle calm-bg u-block-center" ng-if="!job.status.length">
+          <i class="icon ion-happy-outline"></i>
         </div>
       </div>
 
-      <div ng-if="job.status === 'Cancelled'">
-        <div class="u-spacer">
-          <div class="circle dark-bg u-block-center">
-            <i class="icon ion-sad-outline"></i>
-          </div>
-        </div>
+      <h5 class="calm">Nice!</h5>
 
-        <h5 class="dark">
-          Cancelled
-        </h5>
+      <p class="u-text-grey u-spacer">
+        Looks like your clothes are all clean.<br />Let us know when you do!
+      </p>
 
-        <p class="u-text-grey u-spacer">
-          Oops, it seems that your reservation got cancelled.
-        </p>
-
-        <div>
-          <button ng-click="new()" class="button button-positive button-block">
-            Make Another Reservation
-          </button>
-        </div>
+      <div>
+        <a ui-sref="menu.queue-options" class="button button-positive button-block">
+          Make New Reservation
+        </a>
       </div>
     </div>
   </ion-content>
-
-  <div class="bar bar-footer bar-stable u-flex-align-center" ng-if="job.status.length && job.status !== 'Cancelled'">
-    <wizard-steps ng-if="['Reserved', 'Approved', 'Pending washer', 'Pending dryer', 'Done', 'Paid'].includes(job.status)" step="steps[job.status]" max="6" class="u-block-center">
-    </wizard-steps>
 </ion-view>

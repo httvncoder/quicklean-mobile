@@ -114,6 +114,28 @@ function ($scope, $http, $state, $ionicHistory, $ionicPopup, $storage, APIFactor
 
 .controller('queueCtrl', [
   '$scope',
+  '$pusher',
+  'jobs',
+function ($scope, $pusher, jobs) {
+  $scope.jobs = jobs;
+
+  jobs.forEach(function(job, index) {
+    $pusher.subscribe('job.' + job.id)
+      .bind('App\\Events\\JobStatusChange', function(data) {
+        $scope.jobs[index] = data.job;
+        $scope.$apply();
+      });
+  });
+
+  $scope.$on('$destroy', function() {
+    jobs.forEach(function(job) {
+      $pusher.unsubscribe('job.' + job.id);
+    });
+  });
+}])
+
+.controller('jobCtrl', [
+  '$scope',
   '$stateParams',
   '$state',
   '$storage',
@@ -128,15 +150,7 @@ function ($scope, $http, $state, $ionicHistory, $ionicPopup, $storage, APIFactor
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $ionicLoading, $ionicModal, JobFactory, job) {
-  var id = $storage.get('id');
-
-  connect();
-
-  $scope.job = job || {
-    id: id,
-    status: '',
-    queue: -1
-  };
+  $scope.job = job;
 
   // Easy dictionary look-up for the wizard
   $scope.steps = {
@@ -154,20 +168,39 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
   $scope.info = null;
   $scope.receipt = null;
 
-  if ( id ) {
-    $ionicModal.fromTemplateUrl('templates/queue.info-modal.html', {
-      scope: $scope,
-      animation: 'slide-in-right-left'
-    }).then(function(modal) {
-      $scope.info = modal;
+  $ionicModal.fromTemplateUrl('templates/queue.info-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-right-left'
+  }).then(function(modal) {
+    $scope.info = modal;
+  });
+
+  $ionicModal.fromTemplateUrl('templates/queue.receipt-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-right-left'
+  }).then(function(modal) {
+    $scope.receipt = modal;
+  });
+
+  $pusher.subscribe('job.' + $scope.job.id)
+    .bind('App\\Events\\JobStatusChange', function(data) {
+      $scope.job = data.job;
+      $scope.$apply();
     });
 
-    $ionicModal.fromTemplateUrl('templates/queue.receipt-modal.html', {
-      scope: $scope,
-      animation: 'slide-in-right-left'
-    }).then(function(modal) {
-      $scope.receipt = modal;
-    });
+  $scope.$on('$destroy', function() {
+    $pusher.unsubscribe('job.' + $scope.job.id);
+  });
+
+  $scope.own = function(factor) {
+    switch(factor) {
+      case 'conditioner':
+        return JobFactory.own($scope.job.fabric_conditioner);
+      default:
+        break;
+    }
+
+    return JobFactory.own($scope.job[factor]);
   }
 
   $scope.price = function(factor) {
@@ -182,7 +215,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
     $scope.cancelling = true;
     $ionicLoading.show();
 
-    return $http.put(':app/jobs/cancel/' + id)
+    return $http.put(':app/jobs/cancel/' + $scope.job.id)
       .then(function(res) {
         $scope.job.status = 'Cancelled';
         $scope.cancelling = false;
@@ -198,11 +231,6 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
           template: 'An error occured while trying to connect to the server. Please try again!'
         });
       });
-  }
-
-  $scope.new = function() {
-    $storage.destroy('id');
-    $state.go('menu.queue-options');
   }
 
   $scope.done = function(type) {
@@ -223,22 +251,6 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
           template: 'An error occured while trying to connect to the server. Please try again!'
         });
       });
-  }
-
-  function connect() {
-    if ( !id ) {
-      return;
-    }
-
-    $pusher.subscribe('job.' + id)
-      .bind('App\\Events\\JobStatusChange', function(data) {
-        $scope.job = data.job;
-        $scope.$apply();
-      });
-
-    $scope.$on('$destroy', function() {
-      $pusher.unsubscribe('job.' + id);
-    });
   }
 }])
 

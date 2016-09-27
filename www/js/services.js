@@ -117,7 +117,7 @@ angular.module('app.services', [])
     }
   };
 
-  return {
+  var factory = {
     /**
      * Compute total bill for a job
      *
@@ -125,7 +125,7 @@ angular.module('app.services', [])
      * @return {number}
      */
     compute: function(job) {
-      var price = this.price;
+      var price = factory.price;
 
       return [
         price(job, 'fold'),
@@ -147,6 +147,8 @@ angular.module('app.services', [])
      * @return number
      */
     price: function(job, factor) {
+      var own = factory.own;
+
       var wt = /kg$/.test(job.kilogram)
         ? job.kilogram.split(' ')[0]
         : job.kilogram;
@@ -159,17 +161,26 @@ angular.module('app.services', [])
           break;
 
         case 'detergent':
+          if ( own(job.detergent) ) {
+            return 0;
+          }
+
           var qty = parseInt(job.detergent_qty, 10);
           return pricing.detergent[job.detergent.toLowerCase()] * qty;
 
         case 'conditioner':
-          if ( job.fabric_conditioner.toLowerCase() === 'downy' ) {
-            var qty = parseInt(job.fabric_conditioner_qty, 10);
-            return pricing.conditioner * qty;
+          if ( own(job.fabric_conditioner) ) {
+            return 0;
           }
-          break;
+
+          var qty = parseInt(job.fabric_conditioner_qty, 10);
+          return pricing.conditioner * qty;
 
         case 'bleach':
+          if ( own(job.bleach) ) {
+            return 0;
+          }
+
           var qty = parseInt(job.bleach_qty, 10);
           return pricing.bleach[job.bleach.toLowerCase()] * qty;
 
@@ -184,8 +195,18 @@ angular.module('app.services', [])
       }
 
       return 0;
+    },
+
+    /**
+     * @param string value
+     * @return boolean
+     */
+    own: function(value) {
+      return value === 'i_have_one' || value === 'I have one';
     }
   };
+
+  return factory;
 }])
 
 .factory('TipRepository', [function() {
