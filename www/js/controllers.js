@@ -344,31 +344,44 @@ function($scope, $http, $state, $ionicPopup, $ionicHistory, $ionicModal, $paypal
   }
 
   $scope.checkout = function() {
-    return $paypal.checkout(job.total_bill, 'Quicklean Laundry')
-      .then(function() {
-        // This is scary. This assumes that we won't have server errors.
-        return $http.post(':app/jobs/pay/' + job.id)
-      })
-      .then(function() {
-        $ionicPopup.show({
-          title: 'Nice!',
-          template: 'You have successfully paid for your reservation.',
-          buttons: [{
-            text: 'Proceed',
-            type: 'button-positive',
-            onTap: function() {
-              $ionicHistory.nextViewOptions({ disableBack: true });
-              $state.go('menu.queue');
-            }
-          }]
-        });
-      })
-      .catch(function() {
-        $ionicPopup.alert({
-          title: 'Server Error',
-          template: 'An error occured while trying to connect to the server. Please try again!'
-        });
-      });
+    $ionicPopup.show({
+      title: 'Caution',
+      template: 'Reservation payments made through paypal are non-refundable.',
+      buttons: [{
+        text: 'Cancel',
+        type: 'button-stable'
+      }, {
+        text: 'Proceed',
+        type: 'button-positive',
+        onTap: function() {
+          $paypal.checkout(job.total_bill, 'Quicklean Laundry')
+            .then(function() {
+              // This is scary. This assumes that we won't have server errors.
+              return $http.post(':app/jobs/pay/' + job.id)
+            })
+            .then(function() {
+              $ionicPopup.show({
+                title: 'Nice!',
+                template: 'You have successfully paid for your reservation.',
+                buttons: [{
+                  text: 'Proceed',
+                  type: 'button-positive',
+                  onTap: function() {
+                    $ionicHistory.nextViewOptions({ disableBack: true });
+                    $state.go('menu.queue');
+                  }
+                }]
+              });
+            })
+            .catch(function() {
+              $ionicPopup.alert({
+                title: 'Server Error',
+                template: 'An error occured while trying to connect to the server. Please try again!'
+              });
+            });
+        }
+      }]
+    });
   }
 
   $scope.proceed = function() {
