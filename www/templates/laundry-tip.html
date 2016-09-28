@@ -8,9 +8,7 @@
       </h2>
 
       <div class="article-block__block">
-        <p class="article-block__text">
-          {{ tip.content }}
-        </p>
+        <p class="article-block__text" ng-bind-html="tip.content"></p>
       </div>
     </div>
   </ion-content>
