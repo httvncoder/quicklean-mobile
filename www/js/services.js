@@ -69,6 +69,11 @@ angular.module('app.services', [])
       '16': 80
     },
 
+    press: {
+      '8': 40,
+      '16': 80
+    },
+
     detergent: {
       ariel: 12,
       tide: 10,
@@ -128,6 +133,7 @@ angular.module('app.services', [])
       var price = factory.price;
 
       return [
+        price(job, 'press'),
         price(job, 'fold'),
         price(job, 'detergent'),
         price(job, 'conditioner'),
@@ -154,6 +160,12 @@ angular.module('app.services', [])
         : job.kilogram;
 
       switch(factor) {
+        case 'press':
+          if ( job.service_type.toLowerCase() === 'employee' && job.is_press ) {
+            return pricing.press[wt];
+          }
+          break;
+
         case 'fold':
           if ( job.service_type.toLowerCase() === 'employee' && job.is_fold ) {
             return pricing.fold[wt];

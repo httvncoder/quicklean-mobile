@@ -60,6 +60,15 @@
         </div>
       </div>
 
+      <div class="item" ng-if="job.service_type === 'Employee' && job.is_press">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Pressed</div>
+          <div class="u-pull-right">
+            {{ price('press') | numeraljs: 'currency' }}
+          </div>
+        </div>
+      </div>
+
       <div class="item">
         <div class="u-clearfix">
           <div class="u-pull-left">Total Bill</div>

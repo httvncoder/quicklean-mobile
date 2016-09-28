@@ -41,21 +41,20 @@
         </div>
       </div>
 
-      <!-- <div class="item" ng-if="job.service_type === 'employee' && job.is_fold">
-        <div class="u-clearfix">
-          <div class="u-pull-left">Pressed</div>
-          <div class="u-pull-right">
-            <span ng-if="job.is_press"><i class="icon ion-checkmark balanced"></i></span>
-            <span ng-if="!job.is_press"><i class="icon ion-close-round assertive"></i></span>
-          </div>
-        </div>
-      </div> -->
-
       <div class="item" ng-if="job.service_type === 'Employee' && job.is_fold">
         <div class="u-clearfix">
           <div class="u-pull-left">Folded</div>
           <div class="u-pull-right">
             {{ price('fold') | numeraljs: 'currency' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="item" ng-if="job.service_type === 'Employee' && job.is_press">
+        <div class="u-clearfix">
+          <div class="u-pull-left">Pressed</div>
+          <div class="u-pull-right">
+            {{ price('press') | numeraljs: 'currency' }}
           </div>
         </div>
       </div>
