@@ -241,8 +241,8 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
     $scope.completing = true;
 
     return $http.put(':app/jobs/done-' + type + '/' + $scope.job.id)
-      .then(function(job) {
-        $scope.job = job;
+      .then(function(res) {
+        // Our pusher listener will apply the data
         $scope.completing = false;
       })
       .catch(function() {
