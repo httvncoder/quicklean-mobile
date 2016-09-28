@@ -271,6 +271,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
   '$stateParams',
   '$state',
   '$http',
+  '$filter',
   '$ionicHistory',
   '$storage',
   '$ionicLoading',
@@ -281,7 +282,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
  // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLoading, JobFactory, APIFactory, AuthFactory, $paypal) {
+function ($scope, $stateParams, $state, $http, $filter, $ionicHistory, $storage, $ionicLoading, JobFactory, APIFactory, AuthFactory, $paypal) {
   $scope.form = {
     data: {
       name: AuthFactory.data.name,
@@ -326,7 +327,10 @@ function ($scope, $stateParams, $state, $http, $ionicHistory, $storage, $ionicLo
     $scope.form.errors = [];
     $ionicLoading.show();
 
-    var payload = angular.extend($scope.form.data, { status: 'reserved' });
+    var payload = angular.extend({}, $scope.form.data, {
+      status: 'reserved',
+      reserve_at: $filter('date')($scope.form.data.reserve_at, 'yyyy-M-d H:mm')
+    });
 
     return $http.post(':app/me/jobs', payload)
       .then(function(res) {
