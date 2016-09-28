@@ -45,7 +45,7 @@
       <div class="item">
         <div class="u-clearfix">
           <div class="u-pull-left">Washer Mode</div>
-          <div class="u-pull-right">{{ job.washer_mode }}</div>
+          <div class="u-pull-right">{{ job.washer_mode }} {{ meta('washer') }}</div>
         </div>
       </div>
 
@@ -59,21 +59,21 @@
       <div class="item">
         <div class="u-clearfix">
           <div class="u-pull-left">Detergent</div>
-          <div class="u-pull-right">{{ job.detergent }}</div>
+          <div class="u-pull-right">{{ job.detergent }} {{ meta('detergent') }}</div>
         </div>
       </div>
 
       <div class="item">
         <div class="u-clearfix">
           <div class="u-pull-left">Bleach</div>
-          <div class="u-pull-right">{{ job.bleach }}</div>
+          <div class="u-pull-right">{{ job.bleach }} {{ meta('bleach') }}</div>
         </div>
       </div>
 
       <div class="item">
         <div class="u-clearfix">
           <div class="u-pull-left">Fabric Conditioner</div>
-          <div class="u-pull-right">{{ job.fabric_conditioner }}</div>
+          <div class="u-pull-right">{{ job.fabric_conditioner }} {{ meta('conditioner') }}</div>
         </div>
       </div>
 

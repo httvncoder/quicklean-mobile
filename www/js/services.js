@@ -122,6 +122,28 @@ angular.module('app.services', [])
     }
   };
 
+  var meta = {
+    washer: {
+      clean: '24 mins',
+      cleaner: '30 mins',
+      cleanest: '32 mins',
+    },
+
+    bleach: {
+      colorsafe: '30ml'
+    },
+
+    detergent: {
+      ariel: '70g',
+      pride: '40g',
+      tide: '70g',
+    },
+
+    conditioner: {
+      downy: '40ml'
+    }
+  };
+
   var factory = {
     /**
      * Compute total bill for a job
@@ -215,6 +237,30 @@ angular.module('app.services', [])
      */
     own: function(value) {
       return value === 'i_have_one' || value === 'I have one';
+    },
+
+    /**
+     * @param string
+     * @return string
+     */
+    meta: function(job, factor) {
+      var result = '';
+
+      switch(factor) {
+        case 'conditioner':
+          result = meta.conditioner[job.fabric_conditioner.toLowerCase()];
+          break;
+
+        case 'washer':
+          result = meta.washer[job.washer_mode.toLowerCase()];
+          break;
+
+        default:
+          result = meta[factor][job[factor].toLowerCase()];
+          break;
+      }
+
+      return result && result.length ? '(' + result + ')' : '';
     }
   };
 

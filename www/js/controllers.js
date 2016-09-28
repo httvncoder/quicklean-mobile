@@ -210,6 +210,11 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
     return JobFactory.own($scope.job[factor]);
   }
 
+  $scope.meta = function(factor) {
+    console.log(JobFactory.meta($scope.job, factor));
+    return JobFactory.meta($scope.job, factor);
+  }
+
   $scope.price = function(factor) {
     return JobFactory.price($scope.job, factor);
   }
