@@ -20,10 +20,10 @@ function ($scope, $http, $state, $ionicHistory, $storage, AuthFactory) {
 
     var payload = angular.extend({}, $scope.form, {
       grant_type: 'password',
-      // client_id: '3',
-      // client_secret: 'jJOPMnYE9L9E1lbkKd5mDwxTt4XQsxLTDOXQPbwQ',
-      client_id: '2',
-      client_secret: 'NyBKE8NMXH8NyBLv2D7hDb5Wk0nTioJy8bMm2uXs',
+      client_id: '1',
+      client_secret: 'lrN7Odho36HsuKHRsffn3d754w1mnwGCjz0Pny1E',
+      // client_id: '2',
+      // client_secret: 'NyBKE8NMXH8NyBLv2D7hDb5Wk0nTioJy8bMm2uXs',
       scope: ''
     });
 
