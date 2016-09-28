@@ -1,4 +1,4 @@
-<ion-view title="Job" id="page1">
+f<ion-view title="Job" id="page1">
   <ion-nav-buttons side="secondary">
     <button ng-if="job.status.length" class="button button-icon ion-information-circled" ng-click="info.show()">
     </button>
@@ -72,7 +72,8 @@
         </h5>
 
         <p class="u-text-grey u-spacer">
-          Your clothes are now being washed.
+          Your clothes are now being washed.<br />
+          <a href="#" ng-click="$event.preventDefault() || instructions.show()">Click here to check instructions</a>.
         </p>
 
         <div ng-if="job.queue" class="u-spacer">

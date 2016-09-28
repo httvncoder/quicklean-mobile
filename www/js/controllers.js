@@ -167,6 +167,7 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
 
   $scope.info = null;
   $scope.receipt = null;
+  $scope.instructions = null;
 
   $ionicModal.fromTemplateUrl('templates/queue.info-modal.html', {
     scope: $scope,
@@ -180,6 +181,12 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
     animation: 'slide-in-right-left'
   }).then(function(modal) {
     $scope.receipt = modal;
+  });
+
+  $ionicModal.fromTemplateUrl('templates/queue.instructions-modal.html', {
+    scope: $scope,
+  }).then(function(modal) {
+    $scope.instructions = modal;
   });
 
   $pusher.subscribe('job.' + $scope.job.id)
