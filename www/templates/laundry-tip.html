@@ -1,6 +1,17 @@
 <ion-view title="{{ tip.title }}" id="page3">
   <ion-content padding="true" class="has-header">
-    <ng-include src="'templates/laundry-tip.' + tip.slug + '.html'">
-    </ng-include>
+    <div class="article-block">
+      <img src="img/tip-water.jpg" class="article-block__cover">
+
+      <h2 class="article-block__title">
+        {{ tip.title }}
+      </h2>
+
+      <div class="article-block__block">
+        <p class="article-block__text">
+          {{ tip.content }}
+        </p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

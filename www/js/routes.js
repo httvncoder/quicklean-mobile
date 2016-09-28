@@ -137,8 +137,11 @@ angular.module('app.routes', [])
       }
     },
     resolve: {
-      tips: ['TipRepository', function(TipRepository) {
-        return TipRepository.all();
+      tips: ['$http', function($http) {
+        return $http.get(':app/tips')
+          .then(function(res) {
+            return res.data.data;
+          });
       }]
     }
   })
@@ -152,8 +155,11 @@ angular.module('app.routes', [])
       }
     },
     resolve: {
-      tip: ['$stateParams', 'TipRepository', function($stateParams, TipRepository) {
-        return TipRepository.get($stateParams.tip);
+      tip: ['$http', '$stateParams', function($http, $stateParams) {
+        return $http.get(':app/tips/' + $stateParams.tip)
+          .then(function(res) {
+            return res.data.data;
+          });
       }]
     }
   })
