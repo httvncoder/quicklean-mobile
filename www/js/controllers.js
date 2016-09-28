@@ -34,7 +34,7 @@ function ($scope, $http, $state, $ionicHistory, $storage, AuthFactory) {
         return $http.get(':app/me');
       })
       .then(function(res) {
-        AuthFactory.data = res.data.data;
+        AuthFactory.data = res.data;
         $scope.loading = false;
 
         $ionicHistory.nextViewOptions({ disableBack: true });
