@@ -41,9 +41,9 @@ angular.module('app', [
     return {
       request: function(config) {
         if ( /\:app/.test(config.url) ) {
-          config.url = config.url.replace(':app/', 'http://localhost:5000/api/');
+          config.url = config.url.replace(':app/', 'http://quicklean.srph.co/api/');
         } else if ( /\:api/.test(config.url) ) {
-          config.url = config.url.replace(':api/', 'http://localhost:5000/');
+          config.url = config.url.replace(':api/', 'http://quicklean.srph.co/');
         }
 
         return config;
@@ -65,15 +65,15 @@ angular.module('app', [
     }
   });
 
-  // $httpProvider.interceptors.push(function($storage) {
-  //   return {
-  //     responseError: function(response) {
-  //       if ( response.status === 401 && response.config.method === 'GET' ) {
-  //         $storage.destroy('auth');
-  //       }
+  $httpProvider.interceptors.push(function($storage) {
+    return {
+      responseError: function(response) {
+        if ( response.status === 401 && response.config.method === 'GET' ) {
+          $storage.destroy('auth');
+        }
 
-  //       return response;
-  //     }
-  //   }
-  // });
+        return response;
+      }
+    }
+  });
 })
