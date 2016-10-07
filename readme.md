@@ -1,4 +1,4 @@
-## Quickclean Mobile
+## Quicklean Mobile
 The mobile app for [Quicklean](https://github.com/JcRicaro/quicklean) App built with [Ionic](http://ionic.io/).
 
 ![Preview](preview.png)
