@@ -211,7 +211,6 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
   }
 
   $scope.meta = function(factor) {
-    console.log(JobFactory.meta($scope.job, factor));
     return JobFactory.meta($scope.job, factor);
   }
 
