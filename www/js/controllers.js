@@ -127,8 +127,11 @@ function ($scope, $pusher, jobs) {
       });
   });
 
-  $scope.$on('$destroy', function() {
+  // We'll use `$stateChangeStart` because `$destroy` isn't
+  // called until the next controller starts running.
+  $scope.$on('$stateChangeStart', function() {
     jobs.forEach(function(job) {
+      console.log('Destroy', job.id);
       $pusher.unsubscribe('job.' + job.id);
     });
   });
@@ -195,7 +198,9 @@ function ($scope, $stateParams, $state, $storage, $http, $pusher, $ionicPopup, $
       $scope.$apply();
     });
 
-  $scope.$on('$destroy', function() {
+  // We'll use `$stateChangeStart` because `$destroy` isn't
+  // called until the next controller starts running.
+  $scope.$on('$stateChangeStart', function() {
     $pusher.unsubscribe('job.' + $scope.job.id);
   });
 
