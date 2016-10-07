@@ -9887,8 +9887,8 @@ a.button {
 .container {
   align-items: center;
   justify-content: center;
-  padding: 10px 25px;
-  min-height: 100vh;
+  padding-top: 50px;
+  padding-bottom: 50px;
   text-align: center; }
 
 .circle {
