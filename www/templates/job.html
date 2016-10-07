@@ -86,11 +86,13 @@ f<ion-view title="Job" id="page1">
           </span>
         </div>
 
-        <div>
+        <div class="u-spacer">
           <button ng-click="done('washer')" class="button button-balanced button-block">
             Set as Done
           </button>
         </div>
+
+        <img src="img/guide-washer.gif" alt="Washer Guide" style="width: 300px;">
       </div>
 
       <div ng-if="job.status === 'Pending dryer'">
@@ -118,11 +120,13 @@ f<ion-view title="Job" id="page1">
           </span>
         </div>
 
-        <div>
+        <div class="u-spacer">
           <button ng-click="done('dryer')" class="button button-balanced button-block">
             Set as Done
           </button>
         </div>
+
+        <img src="img/guide-dryer.gif" alt="Dryer Guide" style="width: 300px;">
       </div>
 
       <div ng-if="job.status === 'Declined'">
@@ -174,10 +178,12 @@ f<ion-view title="Job" id="page1">
           Almost there!
         </h5>
 
-        <p class="u-text-grey u-no-spacer">
+        <p class="u-text-grey u-spacer">
           Your clothes are now good as new!
           <br />Please pay an amount of <strong class="dark">PHP {{ job.total_bill | numeraljs: 'currency' }}</strong> to the counter.
         </p>
+
+        <img src="img/guide-payment.gif" alt="Payment Guide" style="width: 300px;">
       </div>
 
       <div ng-if="job.status === 'Paid'">
@@ -196,11 +202,13 @@ f<ion-view title="Job" id="page1">
           <br />Don't forget to pick up your clothes.
         </p>
 
-        <div>
+        <div class="u-spacer">
           <a ui-sref="menu.queue-options" class="button button-positive button-block">
             Make Another Reservation
           </a>
         </div>
+
+        <img src="img/guide-done.gif" alt="Folding Guide" style="width: 300px;">
       </div>
 
       <div ng-if="job.status === 'Cancelled'">
