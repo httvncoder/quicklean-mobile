@@ -1,7 +1,7 @@
 <ion-view title="{{ tip.title }}" id="page3">
   <ion-content padding="true" class="has-header">
     <div class="article-block">
-      <img src="img/tip-water.jpg" class="article-block__cover">
+      <img ng-src="img/{{ (tip.id - 1) }}.PNG" class="article-block__cover">
 
       <h2 class="article-block__title">
         {{ tip.title }}
